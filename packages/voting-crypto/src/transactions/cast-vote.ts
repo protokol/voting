@@ -5,10 +5,10 @@ import { VotingStaticFees, VotingTransactionTypes } from "../enums";
 import { AbstractVotingTransaction } from "./abstract-transaction";
 
 export class CastVoteTransaction extends AbstractVotingTransaction {
-	public static readonly type: number = VotingTransactionTypes.CreateProposal;
+	public static readonly type: number = VotingTransactionTypes.CastVote;
 	public static readonly key: string = "CastVote";
 
-	protected static readonly defaultStaticFee = Utils.BigNumber.make(VotingStaticFees.CreateProposal);
+	protected static readonly defaultStaticFee = Utils.BigNumber.make(VotingStaticFees.CastVote);
 
 	public static getAssetSchema(): Record<string, any> {
 		return {
