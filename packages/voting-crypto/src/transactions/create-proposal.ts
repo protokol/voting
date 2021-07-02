@@ -26,8 +26,9 @@ export class CreateProposalTransaction extends AbstractVotingTransaction {
 							required: ["blockHeight"],
 							properties: {
 								blockHeight: {
-									type: "integer",
-									minimum: 1,
+									bignumber: {
+										minimum: 1,
+									},
 								},
 							},
 						},
@@ -48,10 +49,11 @@ export class CreateProposalTransaction extends AbstractVotingTransaction {
 
 		const ipfsBuffer: Buffer = Buffer.from(createProposalAsset.content);
 
-		const buffer: ByteBuffer = new ByteBuffer(1 + ipfsBuffer.length, true);
+		const buffer: ByteBuffer = new ByteBuffer(1 + ipfsBuffer.length + 8, true);
 
 		buffer.writeUint64(createProposalAsset.duration.blockHeight.toString());
 
+		buffer.writeUint8(ipfsBuffer.length);
 		buffer.append(ipfsBuffer, "hex");
 
 		return buffer;
@@ -60,8 +62,18 @@ export class CreateProposalTransaction extends AbstractVotingTransaction {
 	public deserialize(buf: ByteBuffer): void {
 		const { data } = this;
 
+		const blockHeight: number = buf.readUint64();
+
+		const ipfsSize = buf.readUint8();
+		const ipfs = buf.readBytes(ipfsSize).toBuffer().toString("utf8");
+
 		data.asset = {
-			votingCreateProposal: {},
+			votingCreateProposal: {
+				duration: {
+					blockHeight: blockHeight,
+				},
+				content: ipfs,
+			} as ICreateProposal,
 		};
 	}
 }
