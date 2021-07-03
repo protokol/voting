@@ -1,4 +1,4 @@
-import { Managers, Transactions } from "@arkecosystem/crypto";
+import { Managers, Transactions, Utils } from "@arkecosystem/crypto";
 
 import { Builders, Transactions as VotingTransactions } from "../../../src";
 
@@ -14,7 +14,7 @@ describe("Registration Builder Tests", () => {
 			const actual = new Builders.CreateProposalBuilder()
 				.createProposal({
 					duration: {
-						blockHeight: 1234,
+						blockHeight: Utils.BigNumber.make(1234),
 					},
 					content: "qw12312",
 				})
@@ -29,7 +29,7 @@ describe("Registration Builder Tests", () => {
 			const actual = new Builders.CreateProposalBuilder()
 				.createProposal({
 					duration: {
-						blockHeight: 1234,
+						blockHeight: Utils.BigNumber.make(1234),
 					},
 					content: "qw12312",
 				})
@@ -45,7 +45,7 @@ describe("Registration Builder Tests", () => {
 			const actual = new Builders.CreateProposalBuilder()
 				.createProposal({
 					duration: {
-						blockHeight: 1234,
+						blockHeight: Utils.BigNumber.make(1234),
 					},
 					content: "qw12312",
 				})
