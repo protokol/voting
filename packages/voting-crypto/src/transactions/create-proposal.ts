@@ -70,7 +70,7 @@ export class CreateProposalTransaction extends AbstractVotingTransaction {
 		data.asset = {
 			votingCreateProposal: {
 				duration: {
-					blockHeight: blockHeight,
+					blockHeight,
 				},
 				content: ipfs,
 			} as ICreateProposal,
