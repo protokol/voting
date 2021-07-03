@@ -62,7 +62,7 @@ export class CreateProposalTransaction extends AbstractVotingTransaction {
 	public deserialize(buf: ByteBuffer): void {
 		const { data } = this;
 
-		const blockHeight: number = buf.readUint64();
+		const blockHeight = Utils.BigNumber.make(buf.readUint64());
 
 		const ipfsSize = buf.readUint8();
 		const ipfs = buf.readBytes(ipfsSize).toBuffer().toString("utf8");
