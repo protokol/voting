@@ -3,7 +3,6 @@ import { Handlers } from "@arkecosystem/core-transactions";
 import { Interfaces, Transactions } from "@arkecosystem/crypto";
 import { Transactions as VotingTransactions } from "@protokol/voting-crypto";
 
-import { VotingPoolErrors } from "../errors";
 import { VotingTransactionsEvents } from "../events";
 import { createProposalVotingWalletIndex } from "../indexers";
 import { ICreateProposalWallet } from "../interfaces";
@@ -23,22 +22,12 @@ export class CreateProposalHandler extends VotingAbstractTransactionHandler {
 	}
 
 	public walletAttributes(): ReadonlyArray<string> {
-		return [];
+		return ["voting.proposal"];
 	}
 
 	public emitEvents(transaction: Interfaces.ITransaction, emitter: Contracts.Kernel.EventDispatcher): void {
 		void emitter.dispatch(VotingTransactionsEvents.createProposal, transaction.data);
 	}
-
-	// public async throwIfCannotEnterPool(transaction: Interfaces.ITransaction): Promise<void> {
-	// 	Utils.assert.defined<string>(transaction.data.senderPublicKey);
-	//
-	// 	const isInPool = this.poolQuery.getAllBySender(transaction.data.senderPublicKey).whereKind(transaction).has();
-	//
-	// 	if (isInPool) {
-	// 		throw new VotingPoolErrors.VotingTransactionAlreadyInPoolPoolError();
-	// 	}
-	// }
 
 	public async applyVotingTransaction(transaction: Interfaces.ITransactionData): Promise<void> {
 		Utils.assert.defined<string>(transaction.id);
@@ -52,10 +41,11 @@ export class CreateProposalHandler extends VotingAbstractTransactionHandler {
 			proposal: transaction.asset?.votingCreateProposal,
 			agree: 0,
 			disagree: 0,
+			voters: [],
 		};
 		wallet.setAttribute<ICreateProposalWallet>("voting.proposal", proposedWallet);
 
-		this.walletRepository.setOnIndex(createProposalVotingWalletIndex, transaction.senderPublicKey, wallet);
+		this.walletRepository.setOnIndex(createProposalVotingWalletIndex, transaction.id, wallet);
 	}
 
 	public async revertVotingTransaction(transaction: Interfaces.ITransactionData): Promise<void> {
@@ -68,6 +58,6 @@ export class CreateProposalHandler extends VotingAbstractTransactionHandler {
 		delete proposedWallet[transaction.id];
 		wallet.setAttribute<ICreateProposalWallet>("voting.proposal", proposedWallet);
 
-		this.walletRepository.forgetOnIndex(createProposalVotingWalletIndex, transaction.senderPublicKey);
+		this.walletRepository.forgetOnIndex(createProposalVotingWalletIndex, transaction.id);
 	}
 }

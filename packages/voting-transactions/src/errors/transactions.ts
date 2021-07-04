@@ -6,3 +6,16 @@ export class StaticFeeMismatchError extends Errors.TransactionError {
 		super(`Failed to apply transaction, because fee doesn't match static fee ${staticFee}.`);
 	}
 }
+
+// Cast Vote
+export class CastVoteProposalDoesntExistsError extends Errors.TransactionError {
+	public constructor() {
+		super(`Failed to apply transaction, because proposal transaction doesn't exists.`);
+	}
+}
+
+export class CastVoteAlreadyVotedError extends Errors.TransactionError {
+	public constructor() {
+		super(`Failed to apply transaction, because wallet already voted.`);
+	}
+}

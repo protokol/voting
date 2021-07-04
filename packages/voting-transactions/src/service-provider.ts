@@ -1,7 +1,7 @@
 import { Container, Contracts, Providers } from "@arkecosystem/core-kernel";
 
-import { CreateProposalHandler } from "./handlers";
-import { createProposalVotingWalletIndex } from "./indexers";
+import { CastVoteHandler, CreateProposalHandler } from "./handlers";
+import { castVoteVotingWalletIndex, createProposalVotingWalletIndex } from "./indexers";
 
 const plugin = require("../package.json");
 
@@ -18,6 +18,15 @@ export class ServiceProvider extends Providers.ServiceProvider {
 				autoIndex: false,
 			});
 
+		this.app
+			.bind<Contracts.State.WalletIndexerIndex>(Container.Identifiers.WalletRepositoryIndexerIndex)
+			.toConstantValue({
+				name: castVoteVotingWalletIndex,
+				indexer: () => undefined,
+				autoIndex: false,
+			});
+
 		this.app.bind(Container.Identifiers.TransactionHandler).to(CreateProposalHandler);
+		this.app.bind(Container.Identifiers.TransactionHandler).to(CastVoteHandler);
 	}
 }
