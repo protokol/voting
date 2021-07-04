@@ -41,14 +41,14 @@ export class CastVoteTransaction extends AbstractVotingTransaction {
 
 		const castVoteAsset: ICastVote = data.asset.votingCastVote;
 
-		const decisionBuffer: Buffer = Buffer.from(castVoteAsset.decision);
+		const decisionBuffer: Buffer = Buffer.from(castVoteAsset.decision, "utf8");
 
-		const buffer: ByteBuffer = new ByteBuffer(32 + decisionBuffer.length, true);
+		const buffer: ByteBuffer = new ByteBuffer(32 + 1 + decisionBuffer.length, true);
 
-		buffer.append(castVoteAsset.proposalId);
+		buffer.append(castVoteAsset.proposalId, "hex");
 
 		buffer.writeUint8(decisionBuffer.length);
-		buffer.append(castVoteAsset.decision);
+		buffer.append(decisionBuffer, "utf8");
 
 		return buffer;
 	}
@@ -59,7 +59,7 @@ export class CastVoteTransaction extends AbstractVotingTransaction {
 		const proposalId = buf.readBytes(32).toString("hex");
 
 		const decisionLength: number = buf.readUInt8();
-		const decision = buf.readBytes(decisionLength).toString("hex");
+		const decision = buf.readBytes(decisionLength).toString("utf8");
 
 		data.asset = {
 			votingCastVote: {
