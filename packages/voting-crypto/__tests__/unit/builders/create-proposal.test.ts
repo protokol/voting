@@ -8,7 +8,7 @@ beforeAll(() => {
 	Transactions.TransactionRegistry.registerTransactionType(VotingTransactions.CreateProposalTransaction);
 });
 
-describe("Registration Builder Tests", () => {
+describe("CreateProposal Builder Tests", () => {
 	describe("Builder Verification Tests", () => {
 		it("Should Verify Correctly - Without vendorField", () => {
 			const actual = new Builders.CreateProposalBuilder()
