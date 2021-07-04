@@ -17,3 +17,8 @@ export enum VotingStaticFees {
 }
 
 export const VotingTransactionVersion = defaults.version;
+
+export enum VotingOptions {
+	Agree = "yes",
+	Disagree = "no",
+}
