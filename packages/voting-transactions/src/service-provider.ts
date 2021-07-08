@@ -14,7 +14,8 @@ export class ServiceProvider extends Providers.ServiceProvider {
 			.bind<Contracts.State.WalletIndexerIndex>(Container.Identifiers.WalletRepositoryIndexerIndex)
 			.toConstantValue({
 				name: createProposalVotingWalletIndex,
-				indexer: () => undefined,
+				// eslint-disable-next-line @typescript-eslint/no-empty-function
+				indexer: () => {},
 				autoIndex: false,
 			});
 
@@ -22,7 +23,8 @@ export class ServiceProvider extends Providers.ServiceProvider {
 			.bind<Contracts.State.WalletIndexerIndex>(Container.Identifiers.WalletRepositoryIndexerIndex)
 			.toConstantValue({
 				name: castVoteVotingWalletIndex,
-				indexer: () => undefined,
+				// eslint-disable-next-line @typescript-eslint/no-empty-function
+				indexer: () => {},
 				autoIndex: false,
 			});
 

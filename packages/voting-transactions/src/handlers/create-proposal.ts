@@ -1,7 +1,7 @@
 import { Container, Contracts, Utils } from "@arkecosystem/core-kernel";
 import { Handlers } from "@arkecosystem/core-transactions";
 import { Interfaces, Transactions } from "@arkecosystem/crypto";
-import { Transactions as VotingTransactions } from "@protokol/voting-crypto";
+import { Interfaces as VotingInterfaces, Transactions as VotingTransactions } from "@protokol/voting-crypto";
 
 import { VotingTransactionsEvents } from "../events";
 import { createProposalVotingWalletIndex } from "../indexers";
@@ -32,13 +32,17 @@ export class CreateProposalHandler extends VotingAbstractTransactionHandler {
 	public async applyVotingTransaction(transaction: Interfaces.ITransactionData): Promise<void> {
 		Utils.assert.defined<string>(transaction.id);
 		Utils.assert.defined<string>(transaction.senderPublicKey);
-		Utils.assert.defined<string>(transaction.asset?.votingCreateProposal);
+		Utils.assert.defined<VotingInterfaces.ICreateProposal>(transaction.asset?.votingCreateProposal);
 
 		const wallet = this.walletRepository.findByPublicKey(transaction.senderPublicKey);
 
+		if (!wallet.hasAttribute("voting.proposal")) {
+			wallet.setAttribute("voting.proposal", {});
+		}
+
 		const proposedWallet = wallet.getAttribute<ICreateProposalWallet>("voting.proposal");
 		proposedWallet[transaction.id] = {
-			proposal: transaction.asset?.votingCreateProposal,
+			proposal: transaction.asset.votingCreateProposal,
 			agree: 0,
 			disagree: 0,
 			voters: [],

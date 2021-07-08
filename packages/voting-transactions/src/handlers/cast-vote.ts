@@ -16,7 +16,7 @@ export class CastVoteHandler extends VotingAbstractTransactionHandler {
 	private readonly poolQuery!: Contracts.TransactionPool.Query;
 
 	public getConstructor(): Transactions.TransactionConstructor {
-		return VotingTransactions.CreateProposalTransaction;
+		return VotingTransactions.CastVoteTransaction;
 	}
 
 	public dependencies(): ReadonlyArray<Handlers.TransactionHandlerConstructor> {

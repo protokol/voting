@@ -46,7 +46,7 @@ export class CreateProposalTransaction extends AbstractVotingTransaction {
 
 		Asserts.assert.defined<ICreateProposal>(data.asset?.votingCreateProposal);
 		const createProposalAsset: ICreateProposal = data.asset.votingCreateProposal;
-
+		console.log(1)
 		const ipfsBuffer: Buffer = Buffer.from(createProposalAsset.content);
 
 		const buffer: ByteBuffer = new ByteBuffer(1 + ipfsBuffer.length + 8, true);
