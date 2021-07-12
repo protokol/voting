@@ -7,14 +7,14 @@ import { Handlers } from "@arkecosystem/core-transactions";
 import { Interfaces, Transactions, Utils } from "@arkecosystem/crypto";
 import { Builders, Enums, Transactions as VotingTransactions } from "@protokol/voting-crypto";
 
-import { createProposalVotingWalletIndex } from "../../../dist/indexers";
 import {
-	Enums as VotingEnums,
 	Errors as VotingErrors,
 	Events as VotingEvents,
 	Handlers as VotingHandlers,
 	Indexers as VotingIndexers,
 } from "../../../src";
+import { createProposalVotingWalletIndex } from "../../../src/indexers";
+import { ICreateProposalWallet } from "../../../src/interfaces";
 import { buildWallet, initApp } from "../__support__/app";
 
 let app: Application;
@@ -119,14 +119,17 @@ describe("CastVote", () => {
 	});
 
 	describe("throwIfCannotBeApplied", () => {
-		const castVoteData = new Builders.CastVoteBuilder()
-			.castVote({
-				proposalId: "0f3bdaef56214296c191fc842adf50018f55dc6be04892dd92fb48874aabf8f5",
-				decision: "yes",
-			})
-			.nonce("1")
-			.sign(passphrases[0]!)
-			.build();
+		let castVoteData;
+		beforeEach(() => {
+			castVoteData = new Builders.CastVoteBuilder()
+				.castVote({
+					proposalId: "0f3bdaef56214296c191fc842adf50018f55dc6be04892dd92fb48874aabf8f5",
+					decision: "yes",
+				})
+				.nonce("1")
+				.sign(passphrases[0]!)
+				.build();
+		});
 
 		it("Should Throw - CastVoteProposalDoesntExistsError", async () => {
 			await expect(handler.throwIfCannotBeApplied(castVoteData, senderWallet)).rejects.toThrowError(
@@ -136,18 +139,52 @@ describe("CastVote", () => {
 
 		it("Should Throw - CastVoteAlreadyVotedError", async () => {
 			const dummyWallet = buildWallet(app, passphrases[1]!);
+			walletRepository.index(dummyWallet);
 			walletRepository.setOnIndex(
 				createProposalVotingWalletIndex,
 				"0f3bdaef56214296c191fc842adf50018f55dc6be04892dd92fb48874aabf8f5",
 				dummyWallet,
 			);
+			const voters = {};
+			voters[senderWallet.getPublicKey()!] = {};
+			dummyWallet.setAttribute("voting.proposal", { voters });
+
 			await expect(handler.throwIfCannotBeApplied(castVoteData, senderWallet)).rejects.toThrowError(
 				VotingErrors.VotingTransactionErrors.CastVoteAlreadyVotedError,
 			);
 		});
 
 		it("Should not Throw", async () => {
-			// senderWallet.setAttribute()
+			const dummyWallet = buildWallet(app, passphrases[1]!);
+			walletRepository.setOnIndex(
+				createProposalVotingWalletIndex,
+				"0f3bdaef56214296c191fc842adf50018f55dc6be04892dd92fb48874aabf8f5",
+				dummyWallet,
+			);
+			dummyWallet.setAttribute("voting.proposal", { voters: [] });
+			const dummy = dummyWallet.getAttribute("voting.proposal");
+			dummy["0f3bdaef56214296c191fc842adf50018f55dc6be04892dd92fb48874aabf8f5"] = {
+				proposal: {
+					duration: {
+						blockHeight: Utils.BigNumber.make("123"),
+					},
+					content: "stringqwer123",
+				},
+				voters: [],
+				agree: 0,
+				disagree: 0,
+			};
+			dummyWallet.setAttribute<ICreateProposalWallet>("voting.proposal", dummy);
+
+			castVoteData = new Builders.CastVoteBuilder()
+				.castVote({
+					proposalId: "0f3bdaef56214296c191fc842adf50018f55dc6be04892dd92fb48874aabf8f5",
+					decision: "yes",
+				})
+				.nonce("1")
+				.sign(passphrases[0]!)
+				.build();
+
 			await expect(handler.throwIfCannotBeApplied(castVoteData, senderWallet)).toResolve();
 		});
 	});

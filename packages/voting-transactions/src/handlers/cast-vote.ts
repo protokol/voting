@@ -8,7 +8,6 @@ import { VotingTransactionsEvents } from "../events";
 import { castVoteVotingWalletIndex, createProposalVotingWalletIndex } from "../indexers";
 import { ICreateProposalWallet } from "../interfaces";
 import { VotingAbstractTransactionHandler } from "./abstract-handler";
-// import { CreateProposalHandler } from "./create-proposal";
 
 @Container.injectable()
 export class CastVoteHandler extends VotingAbstractTransactionHandler {
@@ -58,7 +57,8 @@ export class CastVoteHandler extends VotingAbstractTransactionHandler {
 		const proposedWallet = this.walletRepository.findByIndex(createProposalVotingWalletIndex, castVote.proposalId);
 
 		const proposedWalletData = proposedWallet.getAttribute<ICreateProposalWallet>("voting.proposal");
-		if (!proposedWalletData.voters[transaction.data.senderPublicKey]) {
+
+		if (proposedWalletData.voters[transaction.data.senderPublicKey]) {
 			throw new VotingTransactionErrors.CastVoteAlreadyVotedError();
 		}
 
