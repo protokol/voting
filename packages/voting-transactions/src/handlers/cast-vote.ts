@@ -8,7 +8,7 @@ import { VotingTransactionsEvents } from "../events";
 import { castVoteVotingWalletIndex, createProposalVotingWalletIndex } from "../indexers";
 import { ICreateProposalWallet } from "../interfaces";
 import { VotingAbstractTransactionHandler } from "./abstract-handler";
-import { CreateProposalHandler } from "./create-proposal";
+// import { CreateProposalHandler } from "./create-proposal";
 
 @Container.injectable()
 export class CastVoteHandler extends VotingAbstractTransactionHandler {
@@ -20,7 +20,7 @@ export class CastVoteHandler extends VotingAbstractTransactionHandler {
 	}
 
 	public dependencies(): ReadonlyArray<Handlers.TransactionHandlerConstructor> {
-		return [CreateProposalHandler];
+		return [];
 	}
 
 	public walletAttributes(): ReadonlyArray<string> {
@@ -28,7 +28,7 @@ export class CastVoteHandler extends VotingAbstractTransactionHandler {
 	}
 
 	public emitEvents(transaction: Interfaces.ITransaction, emitter: Contracts.Kernel.EventDispatcher): void {
-		void emitter.dispatch(VotingTransactionsEvents.createProposal, transaction.data);
+		void emitter.dispatch(VotingTransactionsEvents.castVote, transaction.data);
 	}
 
 	public async throwIfCannotEnterPool(transaction: Interfaces.ITransaction): Promise<void> {
@@ -45,6 +45,7 @@ export class CastVoteHandler extends VotingAbstractTransactionHandler {
 		transaction: Interfaces.ITransaction,
 		wallet: Contracts.State.Wallet,
 	): Promise<void> {
+		console.log(transaction);
 		Utils.assert.defined<string>(transaction.data.senderPublicKey);
 		Utils.assert.defined<VotingInterfaces.ICastVote>(transaction.data.asset?.votingCastVote);
 
