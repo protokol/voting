@@ -1,8 +1,6 @@
-import { Utils } from "@arkecosystem/crypto";
-
 export interface ICreateProposal {
 	duration: {
-		blockHeight: Utils.BigNumber;
+		blockHeight: number;
 	};
 	content: string;
 }
