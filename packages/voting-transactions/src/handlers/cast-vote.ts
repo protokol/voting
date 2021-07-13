@@ -1,13 +1,14 @@
 import { Container, Contracts, Utils } from "@arkecosystem/core-kernel";
 import { Handlers } from "@arkecosystem/core-transactions";
 import { Interfaces, Transactions } from "@arkecosystem/crypto";
-import { Interfaces as VotingInterfaces, Transactions as VotingTransactions } from "@protokol/voting-crypto";
+import { Interfaces as VotingInterfaces, Transactions as VotingTransactions, Enums } from "@protokol/voting-crypto";
 
 import { VotingPoolErrors, VotingTransactionErrors } from "../errors";
 import { VotingTransactionsEvents } from "../events";
 import { castVoteVotingWalletIndex, createProposalVotingWalletIndex } from "../indexers";
 import { ICreateProposalWallet } from "../interfaces";
 import { VotingAbstractTransactionHandler } from "./abstract-handler";
+import { VotingOptions } from "../../../voting-crypto/src/enums";
 
 @Container.injectable()
 export class CastVoteHandler extends VotingAbstractTransactionHandler {
@@ -74,6 +75,11 @@ export class CastVoteHandler extends VotingAbstractTransactionHandler {
 		const proposedWallet = this.walletRepository.findByIndex(createProposalVotingWalletIndex, castVote.proposalId);
 
 		const proposedWalletData = proposedWallet.getAttribute<ICreateProposalWallet>("voting.proposal");
+		if (castVote.decision === Enums.VotingOptions.Agree) {
+			proposedWalletData.agree++;
+		} else {
+			proposedWalletData.disagree++;
+		}
 		proposedWalletData.voters[castVote.proposalId] = {};
 		proposedWallet.setAttribute<ICreateProposalWallet>("voting.proposal", proposedWalletData);
 
@@ -91,6 +97,11 @@ export class CastVoteHandler extends VotingAbstractTransactionHandler {
 
 		const proposedWallet = this.walletRepository.findByIndex(createProposalVotingWalletIndex, castVote.proposalId);
 		const proposedWalletData = proposedWallet.getAttribute<ICreateProposalWallet>("voting.proposal");
+		if (castVote.decision === Enums.VotingOptions.Agree) {
+			proposedWalletData.agree--;
+		} else {
+			proposedWalletData.disagree--;
+		}
 		delete proposedWalletData.voters[castVote.proposalId];
 		proposedWallet.setAttribute<ICreateProposalWallet>("voting.proposal", proposedWalletData);
 
