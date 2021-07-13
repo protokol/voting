@@ -44,7 +44,6 @@ export class CastVoteHandler extends VotingAbstractTransactionHandler {
 		transaction: Interfaces.ITransaction,
 		wallet: Contracts.State.Wallet,
 	): Promise<void> {
-		console.log(transaction);
 		Utils.assert.defined<string>(transaction.data.senderPublicKey);
 		Utils.assert.defined<VotingInterfaces.ICastVote>(transaction.data.asset?.votingCastVote);
 

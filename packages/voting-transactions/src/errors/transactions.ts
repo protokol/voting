@@ -6,6 +6,14 @@ export class StaticFeeMismatchError extends Errors.TransactionError {
 		super(`Failed to apply transaction, because fee doesn't match static fee ${staticFee}.`);
 	}
 }
+// Create Proposal
+export class CreateProposalHeightToLowError extends Errors.TransactionError {
+	public constructor(blockHeight: number, transactionHeight: number) {
+		super(
+			`Failed to apply transaction, because block height [${blockHeight}] is lower then transaction height [${transactionHeight}].`,
+		);
+	}
+}
 
 // Cast Vote
 export class CastVoteProposalDoesntExistsError extends Errors.TransactionError {

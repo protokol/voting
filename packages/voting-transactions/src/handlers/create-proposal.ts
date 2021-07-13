@@ -3,6 +3,7 @@ import { Handlers } from "@arkecosystem/core-transactions";
 import { Interfaces, Transactions } from "@arkecosystem/crypto";
 import { Interfaces as VotingInterfaces, Transactions as VotingTransactions } from "@protokol/voting-crypto";
 
+import { VotingTransactionErrors } from "../errors";
 import { VotingTransactionsEvents } from "../events";
 import { createProposalVotingWalletIndex } from "../indexers";
 import { ICreateProposalWallet } from "../interfaces";
@@ -28,6 +29,25 @@ export class CreateProposalHandler extends VotingAbstractTransactionHandler {
 
 	public emitEvents(transaction: Interfaces.ITransaction, emitter: Contracts.Kernel.EventDispatcher): void {
 		void emitter.dispatch(VotingTransactionsEvents.createProposal, transaction.data);
+	}
+
+	public async throwIfCannotBeApplied(
+		transaction: Interfaces.ITransaction,
+		wallet: Contracts.State.Wallet,
+	): Promise<void> {
+		Utils.assert.defined<string>(transaction.data.senderPublicKey);
+		Utils.assert.defined<VotingInterfaces.ICreateProposal>(transaction.data.asset?.votingCreateProposal);
+
+		const proposedData: VotingInterfaces.ICreateProposal = transaction.data.asset.votingCreateProposal;
+
+		const lastBlock: Interfaces.IBlock = this.app.get<any>(Container.Identifiers.StateStore).getLastBlock();
+		if (lastBlock.data.height <= proposedData.duration.blockHeight) {
+			throw new VotingTransactionErrors.CreateProposalHeightToLowError(
+				lastBlock.data.height,
+				proposedData.duration.blockHeight,
+			);
+		}
+		return super.throwIfCannotBeApplied(transaction, wallet);
 	}
 
 	public async applyVotingTransaction(transaction: Interfaces.ITransactionData): Promise<void> {
