@@ -4,7 +4,7 @@ import { Application, Container, Contracts } from "@arkecosystem/core-kernel";
 import { Wallets } from "@arkecosystem/core-state";
 import { passphrases } from "@arkecosystem/core-test-framework";
 import { Handlers } from "@arkecosystem/core-transactions";
-import { Interfaces, Transactions, Utils } from "@arkecosystem/crypto";
+import { Interfaces, Transactions } from "@arkecosystem/crypto";
 import { Builders, Enums, Transactions as VotingTransactions } from "@protokol/voting-crypto";
 
 import {
@@ -161,16 +161,16 @@ describe("CastVote", () => {
 				"0f3bdaef56214296c191fc842adf50018f55dc6be04892dd92fb48874aabf8f5",
 				dummyWallet,
 			);
-			dummyWallet.setAttribute("voting.proposal", { voters: [] });
+			dummyWallet.setAttribute("voting.proposal", { voters: {} });
 			const dummy = dummyWallet.getAttribute("voting.proposal");
 			dummy["0f3bdaef56214296c191fc842adf50018f55dc6be04892dd92fb48874aabf8f5"] = {
 				proposal: {
 					duration: {
-						blockHeight: Utils.BigNumber.make("123"),
+						blockHeight: 123,
 					},
 					content: "stringqwer123",
 				},
-				voters: [],
+				voters: {},
 				agree: 0,
 				disagree: 0,
 			};
@@ -189,34 +189,50 @@ describe("CastVote", () => {
 		});
 	});
 
-	describe("applyVotingTransaction", () => {
-		it("Should Resolve - Single Transaction", async () => {
-			await expect(handler.applyVotingTransaction(actual.data)).toResolve();
-		});
-
-		it("Should Resolve - Two Transactions", async () => {
-			await expect(handler.applyVotingTransaction(actual.data)).toResolve();
-
-			actual = new Builders.CreateProposalBuilder()
-				.createProposal({
-					duration: {
-						blockHeight: 1234,
-					},
-					content: "qw12312",
+	describe("Apply and Revert", () => {
+		beforeEach(() => {
+			actual = new Builders.CastVoteBuilder()
+				.castVote({
+					proposalId: "0f3bdaef56214296c191fc842adf50018f55dc6be04892dd92fb48874aabf8f5",
+					decision: "yes",
 				})
-				.nonce("2")
+				.nonce("1")
 				.sign(passphrases[0]!)
 				.build();
 
-			await expect(handler.applyVotingTransaction(actual.data)).toResolve();
+			const dummyWallet = buildWallet(app, passphrases[1]!);
+			walletRepository.setOnIndex(
+				createProposalVotingWalletIndex,
+				"0f3bdaef56214296c191fc842adf50018f55dc6be04892dd92fb48874aabf8f5",
+				dummyWallet,
+			);
+			dummyWallet.setAttribute("voting.proposal", { voters: {} });
+			const dummy = dummyWallet.getAttribute("voting.proposal");
+			dummy["0f3bdaef56214296c191fc842adf50018f55dc6be04892dd92fb48874aabf8f5"] = {
+				proposal: {
+					duration: {
+						blockHeight: 123,
+					},
+					content: "stringqwer123",
+				},
+				voters: {},
+				agree: 0,
+				disagree: 0,
+			};
+			dummyWallet.setAttribute<ICreateProposalWallet>("voting.proposal", dummy);
 		});
-	});
+		describe("applyVotingTransaction", () => {
+			it("Should Resolve - Single Transaction", async () => {
+				await expect(handler.applyVotingTransaction(actual.data)).toResolve();
+			});
+		});
 
-	describe("revertVotingTransaction", () => {
-		it("Should Resolve", async () => {
-			await handler.applyVotingTransaction(actual.data);
+		describe("revertVotingTransaction", () => {
+			it("Should Resolve", async () => {
+				await handler.applyVotingTransaction(actual.data);
 
-			await expect(handler.revertVotingTransaction(actual.data)).toResolve();
+				await expect(handler.revertVotingTransaction(actual.data)).toResolve();
+			});
 		});
 	});
 });

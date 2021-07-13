@@ -74,10 +74,10 @@ export class CastVoteHandler extends VotingAbstractTransactionHandler {
 		const proposedWallet = this.walletRepository.findByIndex(createProposalVotingWalletIndex, castVote.proposalId);
 
 		const proposedWalletData = proposedWallet.getAttribute<ICreateProposalWallet>("voting.proposal");
-		proposedWalletData.voters.push(castVote.proposalId);
+		proposedWalletData.voters[castVote.proposalId] = {};
 		proposedWallet.setAttribute<ICreateProposalWallet>("voting.proposal", proposedWalletData);
 
-		const castedWallet = this.walletRepository.findByIndex(castVoteVotingWalletIndex, transaction.senderPublicKey);
+		const castedWallet = this.walletRepository.findByPublicKey(transaction.senderPublicKey);
 
 		this.walletRepository.setOnIndex(castVoteVotingWalletIndex, transaction.id, castedWallet);
 	}
