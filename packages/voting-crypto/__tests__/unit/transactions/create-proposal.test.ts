@@ -3,7 +3,6 @@ import Buffer from "buffer";
 
 import { CreateProposalBuilder } from "../../../src/builders";
 import { CreateProposalTransaction } from "../../../src/transactions";
-import { Utils } from "@arkecosystem/crypto";
 
 beforeAll(() => {
 	Managers.configManager.setFromPreset("testnet" as any);
@@ -17,7 +16,7 @@ describe("Create Proposal Transaction Tests", () => {
 			const actual = new CreateProposalBuilder()
 				.createProposal({
 					duration: {
-						blockHeight: Utils.BigNumber.make(1234),
+						blockHeight: 1234,
 					},
 					content: "qw12312",
 				})
@@ -31,7 +30,7 @@ describe("Create Proposal Transaction Tests", () => {
 
 			expect(deserialized.data.asset?.votingCreateProposal).toStrictEqual({
 				duration: {
-					blockHeight: Utils.BigNumber.make(1234),
+					blockHeight: 1234,
 				},
 				content: "qw12312",
 			});
@@ -41,7 +40,7 @@ describe("Create Proposal Transaction Tests", () => {
 			const actual = new CreateProposalBuilder()
 				.createProposal({
 					duration: {
-						blockHeight: Utils.BigNumber.make(1234),
+						blockHeight: 1234,
 					},
 					content: "qw12312",
 				})

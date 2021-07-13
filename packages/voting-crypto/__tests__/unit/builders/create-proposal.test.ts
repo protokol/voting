@@ -1,4 +1,4 @@
-import { Managers, Transactions, Utils } from "@arkecosystem/crypto";
+import { Managers, Transactions } from "@arkecosystem/crypto";
 
 import { Builders, Transactions as VotingTransactions } from "../../../src";
 
