@@ -8,7 +8,6 @@ import { VotingTransactionsEvents } from "../events";
 import { createProposalVotingWalletIndex } from "../indexers";
 import { ICreateProposalWallet } from "../interfaces";
 import { VotingAbstractTransactionHandler } from "./abstract-handler";
-import { CastVoteHandler } from "./cast-vote";
 
 @Container.injectable()
 export class CreateProposalHandler extends VotingAbstractTransactionHandler {
@@ -20,7 +19,7 @@ export class CreateProposalHandler extends VotingAbstractTransactionHandler {
 	}
 
 	public dependencies(): ReadonlyArray<Handlers.TransactionHandlerConstructor> {
-		return [CastVoteHandler];
+		return [];
 	}
 
 	public walletAttributes(): ReadonlyArray<string> {
