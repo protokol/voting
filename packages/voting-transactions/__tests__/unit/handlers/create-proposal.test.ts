@@ -62,7 +62,7 @@ beforeEach(async () => {
 	actual = new Builders.CreateProposalBuilder()
 		.createProposal({
 			duration: {
-				blockHeight: Utils.BigNumber.make(1234),
+				blockHeight: 1234,
 			},
 			content: "qw12312",
 		})
@@ -127,7 +127,7 @@ describe("CreateProposal", () => {
 			actual = new Builders.CreateProposalBuilder()
 				.createProposal({
 					duration: {
-						blockHeight: Utils.BigNumber.make(1234),
+						blockHeight: 1234,
 					},
 					content: "qw12312",
 				})
