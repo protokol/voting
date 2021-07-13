@@ -13,6 +13,7 @@ import { CreateProposalHandler } from "../../../src/handlers";
 import { VotingAbstractTransactionHandler } from "../../../src/handlers";
 import { createProposalVotingWalletIndex } from "../../../src/indexers";
 import { buildWallet, initApp } from "../__support__/app";
+import { CastVoteHandler } from "../../../src/handlers";
 
 let app: Application;
 
@@ -49,6 +50,7 @@ beforeEach(async () => {
 	walletRepository.index(senderWallet);
 
 	app.bind(Container.Identifiers.TransactionHandler).to(CreateProposalHandler);
+	app.bind(Container.Identifiers.TransactionHandler).to(CastVoteHandler);
 
 	transactionHandlerRegistry = app.get<Handlers.Registry>(Container.Identifiers.TransactionHandlerRegistry);
 
@@ -74,6 +76,7 @@ beforeEach(async () => {
 
 afterEach(() => {
 	Transactions.TransactionRegistry.deregisterTransactionType(VotingTransactions.CreateProposalTransaction);
+	Transactions.TransactionRegistry.deregisterTransactionType(VotingTransactions.CastVoteTransaction);
 });
 
 describe("CreateProposal", () => {

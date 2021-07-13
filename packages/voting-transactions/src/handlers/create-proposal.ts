@@ -8,6 +8,7 @@ import { VotingTransactionsEvents } from "../events";
 import { createProposalVotingWalletIndex } from "../indexers";
 import { ICreateProposalWallet } from "../interfaces";
 import { VotingAbstractTransactionHandler } from "./abstract-handler";
+import { CastVoteHandler } from "./cast-vote";
 
 @Container.injectable()
 export class CreateProposalHandler extends VotingAbstractTransactionHandler {
@@ -19,7 +20,7 @@ export class CreateProposalHandler extends VotingAbstractTransactionHandler {
 	}
 
 	public dependencies(): ReadonlyArray<Handlers.TransactionHandlerConstructor> {
-		return [];
+		return [CastVoteHandler];
 	}
 
 	public walletAttributes(): ReadonlyArray<string> {
@@ -40,7 +41,7 @@ export class CreateProposalHandler extends VotingAbstractTransactionHandler {
 		const proposedData: VotingInterfaces.ICreateProposal = transaction.data.asset.votingCreateProposal;
 
 		const lastBlock: Interfaces.IBlock = this.app.get<any>(Container.Identifiers.StateStore).getLastBlock();
-		if (lastBlock.data.height <= proposedData.duration.blockHeight) {
+		if (lastBlock.data.height >= proposedData.duration.blockHeight) {
 			throw new VotingTransactionErrors.CreateProposalHeightToLowError(
 				lastBlock.data.height,
 				proposedData.duration.blockHeight,

@@ -8,7 +8,6 @@ import { VotingTransactionsEvents } from "../events";
 import { castVoteVotingWalletIndex, createProposalVotingWalletIndex } from "../indexers";
 import { ICreateProposalWallet } from "../interfaces";
 import { VotingAbstractTransactionHandler } from "./abstract-handler";
-import { VotingOptions } from "../../../voting-crypto/src/enums";
 
 @Container.injectable()
 export class CastVoteHandler extends VotingAbstractTransactionHandler {
