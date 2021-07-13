@@ -1,12 +1,13 @@
 import "jest-extended";
 
 import { Application, Container, Contracts } from "@arkecosystem/core-kernel";
-import { Wallets } from "@arkecosystem/core-state";
+import { Stores, Wallets } from "@arkecosystem/core-state";
 import { passphrases } from "@arkecosystem/core-test-framework";
 import { Handlers } from "@arkecosystem/core-transactions";
 import { Interfaces, Transactions, Utils } from "@arkecosystem/crypto";
 import { Builders, Enums, Transactions as VotingTransactions } from "@protokol/voting-crypto";
 
+import { VotingTransactionErrors } from "../../../src/errors";
 import { VotingTransactionsEvents } from "../../../src/events";
 import { CreateProposalHandler } from "../../../src/handlers";
 import { VotingAbstractTransactionHandler } from "../../../src/handlers";
@@ -111,7 +112,22 @@ describe("CreateProposal", () => {
 	});
 
 	describe("throwIfCannotBeApplied", () => {
+		it("Should Throw - CreateProposalHeightToLowError", async () => {
+			const mockLastBlockData: Partial<Interfaces.IBlockData> = { height: 12 };
+			const mockGetLastBlock = jest.fn();
+			Stores.StateStore.prototype.getLastBlock = mockGetLastBlock;
+			mockGetLastBlock.mockReturnValue({ data: mockLastBlockData });
+
+			await expect(handler.throwIfCannotBeApplied(actual, senderWallet)).rejects.toThrowError(
+				VotingTransactionErrors.CreateProposalHeightToLowError,
+			);
+		});
 		it("Should not Throw", async () => {
+			const mockLastBlockData: Partial<Interfaces.IBlockData> = { height: 12345 };
+			const mockGetLastBlock = jest.fn();
+			Stores.StateStore.prototype.getLastBlock = mockGetLastBlock;
+			mockGetLastBlock.mockReturnValue({ data: mockLastBlockData });
+
 			await expect(handler.throwIfCannotBeApplied(actual, senderWallet)).toResolve();
 		});
 	});

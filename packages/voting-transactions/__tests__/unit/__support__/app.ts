@@ -25,9 +25,6 @@ const logger = {
 };
 
 export const initApp = (): Application => {
-	//
-	// Managers.configManager.setFromPreset("testnet" as any);
-	// Managers.configManager.setHeight(100000000);
 	const config = Generators.generateCryptoConfigRaw();
 	Managers.configManager.setConfig(config);
 
