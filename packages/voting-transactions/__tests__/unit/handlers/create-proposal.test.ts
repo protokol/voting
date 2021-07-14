@@ -87,9 +87,9 @@ describe("CreateProposal", () => {
 	});
 
 	describe("dependencies", () => {
-		it("Should get Empty Array", () => {
+		it("Should not get Empty Array", () => {
 			expect(handler.dependencies()).toBeArray();
-			expect(handler.dependencies()).toBeEmpty();
+			expect(handler.dependencies()).not.toBeEmpty();
 		});
 	});
 

@@ -41,7 +41,7 @@ export class CreateProposalHandler extends VotingAbstractTransactionHandler {
 		const proposedData: VotingInterfaces.ICreateProposal = transaction.data.asset.votingCreateProposal;
 
 		const lastBlock: Interfaces.IBlock = this.app.get<any>(Container.Identifiers.StateStore).getLastBlock();
-		if (lastBlock.data.height >= proposedData.duration.blockHeight) {
+		if (lastBlock.data.height <= proposedData.duration.blockHeight) {
 			throw new VotingTransactionErrors.CreateProposalHeightToLowError(
 				lastBlock.data.height,
 				proposedData.duration.blockHeight,
