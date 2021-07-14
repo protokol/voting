@@ -4,16 +4,16 @@ import { Application, Container, Contracts } from "@arkecosystem/core-kernel";
 import { Stores, Wallets } from "@arkecosystem/core-state";
 import { passphrases } from "@arkecosystem/core-test-framework";
 import { Handlers } from "@arkecosystem/core-transactions";
-import { Interfaces, Transactions, Utils } from "@arkecosystem/crypto";
+import { Interfaces, Transactions } from "@arkecosystem/crypto";
 import { Builders, Enums, Transactions as VotingTransactions } from "@protokol/voting-crypto";
 
 import { VotingTransactionErrors } from "../../../src/errors";
 import { VotingTransactionsEvents } from "../../../src/events";
 import { CreateProposalHandler } from "../../../src/handlers";
 import { VotingAbstractTransactionHandler } from "../../../src/handlers";
+import { CastVoteHandler } from "../../../src/handlers";
 import { createProposalVotingWalletIndex } from "../../../src/indexers";
 import { buildWallet, initApp } from "../__support__/app";
-import { CastVoteHandler } from "../../../src/handlers";
 
 let app: Application;
 
@@ -138,10 +138,16 @@ describe("CreateProposal", () => {
 	describe("applyVotingTransaction", () => {
 		it("Should Resolve - Single Transaction", async () => {
 			await expect(handler.applyVotingTransaction(actual.data)).toResolve();
+
+			const proposalData = senderWallet.getAttribute("voting.proposal");
+			expect(actual.data.id).toStrictEqual(Object.keys(proposalData)[0]);
 		});
 
 		it("Should Resolve - Two Transactions", async () => {
 			await expect(handler.applyVotingTransaction(actual.data)).toResolve();
+			let proposalData = senderWallet.getAttribute("voting.proposal");
+
+			expect(actual.data.id).toStrictEqual(Object.keys(proposalData)[0]);
 
 			actual = new Builders.CreateProposalBuilder()
 				.createProposal({
@@ -155,6 +161,10 @@ describe("CreateProposal", () => {
 				.build();
 
 			await expect(handler.applyVotingTransaction(actual.data)).toResolve();
+
+			proposalData = senderWallet.getAttribute("voting.proposal");
+
+			expect(actual.data.id).toStrictEqual(Object.keys(proposalData)[1]);
 		});
 	});
 
@@ -163,6 +173,9 @@ describe("CreateProposal", () => {
 			await handler.applyVotingTransaction(actual.data);
 
 			await expect(handler.revertVotingTransaction(actual.data)).toResolve();
+
+			const proposalData = senderWallet.getAttribute("voting.proposal");
+			expect(proposalData).toBeEmpty();
 		});
 	});
 });
