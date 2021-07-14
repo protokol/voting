@@ -12,7 +12,7 @@ let app: Contracts.Kernel.Application;
 beforeAll(async () => (app = await support.setUp()));
 afterAll(async () => await support.tearDown());
 
-describe("Create Proposal Functional Tests - Signed with 2 Passphrases", () => {
+describe("CastVote Functional Tests - Signed with 2 Passphrases", () => {
 	it("Should Broadcast, Accept and Forge it [Signed with 2 Passphrases]", async () => {
 		// Prepare a fresh wallet for the tests
 		const passphrase = generateMnemonic();

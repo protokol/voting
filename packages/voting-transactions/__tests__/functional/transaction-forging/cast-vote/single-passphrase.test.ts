@@ -10,7 +10,7 @@ let app: Contracts.Kernel.Application;
 beforeAll(async () => (app = await support.setUp()));
 afterAll(async () => await support.tearDown());
 
-describe("Cast Vote Functional Tests - Signed with one Passphrase", () => {
+describe("CastVote Functional Tests - Signed with one Passphrase", () => {
 	let proposalId;
 	it("Should Broadcast, Accept and Forge it [Signed with 1 Passphrase]", async () => {
 		const createProposal = VotingTransactionFactory.initialize(app)
