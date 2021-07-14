@@ -58,7 +58,6 @@ export class CastVoteHandler extends VotingAbstractTransactionHandler {
 		const proposedWalletData = proposedWallet.getAttribute<ICreateProposalWallet>("voting.proposal");
 
 		const voters: string[] = proposedWalletData[castVote.proposalId].voters;
-
 		if (voters.includes(transaction.data.senderPublicKey)) {
 			throw new VotingTransactionErrors.CastVoteAlreadyVotedError();
 		}
@@ -66,7 +65,6 @@ export class CastVoteHandler extends VotingAbstractTransactionHandler {
 		const lastBlock: Interfaces.IBlock = this.app.get<any>(Container.Identifiers.StateStore).getLastBlock();
 
 		const blockHeight: number = proposedWalletData[castVote.proposalId].proposal.duration.blockHeight;
-
 		if (blockHeight <= lastBlock.data.height) {
 			throw new VotingTransactionErrors.CastVotelHeightToHighError(lastBlock.data.height, blockHeight);
 		}
@@ -85,11 +83,11 @@ export class CastVoteHandler extends VotingAbstractTransactionHandler {
 
 		const proposedWalletData = proposedWallet.getAttribute<ICreateProposalWallet>("voting.proposal");
 		if (castVote.decision === Enums.VotingOptions.Agree) {
-			proposedWalletData.agree++;
+			proposedWalletData[castVote.proposalId].agree++;
 		} else {
-			proposedWalletData.disagree++;
+			proposedWalletData[castVote.proposalId].disagree++;
 		}
-		proposedWalletData.voters[castVote.proposalId] = {};
+		proposedWalletData[castVote.proposalId].voters.push(castVote.proposalId);
 		proposedWallet.setAttribute<ICreateProposalWallet>("voting.proposal", proposedWalletData);
 
 		const castedWallet = this.walletRepository.findByPublicKey(transaction.senderPublicKey);
@@ -107,9 +105,9 @@ export class CastVoteHandler extends VotingAbstractTransactionHandler {
 		const proposedWallet = this.walletRepository.findByIndex(createProposalVotingWalletIndex, castVote.proposalId);
 		const proposedWalletData = proposedWallet.getAttribute<ICreateProposalWallet>("voting.proposal");
 		if (castVote.decision === Enums.VotingOptions.Agree) {
-			proposedWalletData.agree--;
+			proposedWalletData[castVote.proposalId].agree--;
 		} else {
-			proposedWalletData.disagree--;
+			proposedWalletData[castVote.proposalId].disagree--;
 		}
 		delete proposedWalletData.voters[castVote.proposalId];
 		proposedWallet.setAttribute<ICreateProposalWallet>("voting.proposal", proposedWalletData);

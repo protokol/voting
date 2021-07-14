@@ -11,6 +11,7 @@ beforeAll(async () => (app = await support.setUp()));
 afterAll(async () => await support.tearDown());
 
 describe("Cast Vote Functional Tests - Signed with one Passphrase", () => {
+	let proposalId;
 	it("Should Broadcast, Accept and Forge it [Signed with 1 Passphrase]", async () => {
 		const createProposal = VotingTransactionFactory.initialize(app)
 			.CreateProposal({
@@ -25,8 +26,9 @@ describe("Cast Vote Functional Tests - Signed with one Passphrase", () => {
 		await expect(createProposal).toBeAccepted();
 		await snoozeForBlock(1);
 		await expect(createProposal.id).toBeForged();
-		console.log("heree.--------------------------")
-		console.log(createProposal.id);
+
+		proposalId = createProposal.id;
+
 		const castVote = VotingTransactionFactory.initialize(app)
 			.CastVote({
 				proposalId: createProposal.id!,
@@ -40,19 +42,17 @@ describe("Cast Vote Functional Tests - Signed with one Passphrase", () => {
 		await expect(castVote.id).toBeForged();
 	});
 
-	// it("Should Not Be Broadcast, Accept and Forge it [Signed with 1 Passphrase]", async () => {
-	// 	const registration = VotingTransactionFactory.initialize(app)
-	// 		.CreateProposal({
-	// 			duration: {
-	// 				blockHeight: 2,
-	// 			},
-	// 			content: "qw12312",
-	// 		})
-	// 		.withPassphrase(passphrases[1]!)
-	// 		.createOne();
-	//
-	// 	await expect(registration).not.toBeAccepted();
-	// 	await snoozeForBlock(1);
-	// 	await expect(registration.id).not.toBeForged();
-	// });
+	it("Should Not Be Broadcast, Accept and Forge it - Because Wallet Already Voted", async () => {
+		const registration = VotingTransactionFactory.initialize(app)
+			.CastVote({
+				proposalId: proposalId,
+				decision: "No",
+			})
+			.withPassphrase(passphrases[1]!)
+			.createOne();
+
+		await expect(registration).not.toBeAccepted();
+		await snoozeForBlock(1);
+		await expect(registration.id).not.toBeForged();
+	});
 });
