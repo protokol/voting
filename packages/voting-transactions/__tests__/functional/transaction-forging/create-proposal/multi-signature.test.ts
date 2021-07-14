@@ -13,7 +13,7 @@ beforeAll(async () => (app = await support.setUp()));
 afterAll(async () => await support.tearDown());
 
 describe("Create Proposal Functional Tests - Signed with Multi Signature", () => {
-	it("Should Broadcast, Accept and Forge it [Signed with 1 Passphrase]", async () => {
+	it("Should Broadcast, Accept and Forge it [Signed with Multi Signature]", async () => {
 		// Register a multi signature wallet with defaults
 		const passphrase = generateMnemonic();
 		const secrets = [passphrase, passphrases[4]!, passphrases[5]!];
