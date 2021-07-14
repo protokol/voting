@@ -49,7 +49,7 @@ describe("Create Proposal Functional Tests - Signed with Multi Signature", () =>
 		const multiSigPublicKey = Identities.PublicKey.fromMultiSignatureAsset(multiSignature.asset!.multiSignature!);
 
 		const multiSignatureFunds = VotingTransactionFactory.initialize(app)
-			.transfer(multiSigAddress, 100 * 1e8)
+			.transfer(multiSigAddress, 1000 * 1e9)
 			.withPassphrase(passphrases[0]!)
 			.createOne();
 
