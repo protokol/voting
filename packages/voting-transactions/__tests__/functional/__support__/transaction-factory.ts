@@ -17,8 +17,8 @@ export class VotingTransactionFactory extends TransactionFactory {
 		return this;
 	}
 
-	public CastVote(): VotingTransactionFactory {
-		this.builder = new Builders.CastVoteBuilder();
+	public CastVote(castVote: Interfaces.ICastVote): VotingTransactionFactory {
+		this.builder = new Builders.CastVoteBuilder().castVote(castVote);
 
 		return this;
 	}

@@ -4,5 +4,5 @@ export interface ICreateProposalWallet {
 	proposal: Interfaces.ICreateProposal;
 	agree: number;
 	disagree: number;
-	voters: object;
+	voters: Record<string, Object>;
 }

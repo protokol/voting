@@ -44,25 +44,29 @@ export class CastVoteHandler extends VotingAbstractTransactionHandler {
 		transaction: Interfaces.ITransaction,
 		wallet: Contracts.State.Wallet,
 	): Promise<void> {
+		console.log("throwIfCannotBeApplied");
 		Utils.assert.defined<string>(transaction.data.senderPublicKey);
 		Utils.assert.defined<VotingInterfaces.ICastVote>(transaction.data.asset?.votingCastVote);
 
 		const castVote = transaction.data.asset.votingCastVote;
-
+		console.log(castVote);
 		if (!this.walletRepository.hasByIndex(createProposalVotingWalletIndex, castVote.proposalId)) {
 			throw new VotingTransactionErrors.CastVoteProposalDoesntExistsError();
 		}
 
 		const proposedWallet = this.walletRepository.findByIndex(createProposalVotingWalletIndex, castVote.proposalId);
+		console.log(proposedWallet);
 
 		const proposedWalletData = proposedWallet.getAttribute<ICreateProposalWallet>("voting.proposal");
-
-		if (proposedWalletData.voters[transaction.data.senderPublicKey]) {
+		if (!proposedWalletData.voters) {
+			proposedWalletData.voters = {};
+		}
+		if (proposedWalletData.voters[castVote.proposalId]) {
 			throw new VotingTransactionErrors.CastVoteAlreadyVotedError();
 		}
-
+		console.log(proposedWalletData.proposal.duration.blockHeight);
 		const lastBlock: Interfaces.IBlock = this.app.get<any>(Container.Identifiers.StateStore).getLastBlock();
-		if (lastBlock.data.height >= proposedWalletData.proposal.duration.blockHeight) {
+		if (proposedWalletData.proposal.duration.blockHeight <= lastBlock.data.height) {
 			throw new VotingTransactionErrors.CastVotelHeightToHighError(
 				lastBlock.data.height,
 				proposedWalletData.proposal.duration.blockHeight,
@@ -73,6 +77,7 @@ export class CastVoteHandler extends VotingAbstractTransactionHandler {
 	}
 
 	public async applyVotingTransaction(transaction: Interfaces.ITransactionData): Promise<void> {
+		console.log(transaction);
 		Utils.assert.defined<VotingInterfaces.ICastVote>(transaction.asset?.votingCastVote);
 		Utils.assert.defined<string>(transaction.id);
 		Utils.assert.defined<string>(transaction.senderPublicKey);
