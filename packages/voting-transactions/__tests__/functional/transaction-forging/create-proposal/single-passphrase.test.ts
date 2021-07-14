@@ -42,5 +42,4 @@ describe("Create Proposal Functional Tests - Signed with one Passphrase", () => 
 		await snoozeForBlock(1);
 		await expect(registration.id).not.toBeForged();
 	});
-
 });

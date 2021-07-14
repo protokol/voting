@@ -58,14 +58,16 @@ export class CastVoteHandler extends VotingAbstractTransactionHandler {
 		console.log(proposedWallet);
 
 		const proposedWalletData = proposedWallet.getAttribute<ICreateProposalWallet>("voting.proposal");
-		if (!proposedWalletData.voters) {
-			proposedWalletData.voters = {};
-		}
-		if (proposedWalletData.voters[castVote.proposalId]) {
+		console.log(proposedWalletData.voters[transaction.data.senderPublicKey])
+		if (proposedWalletData.voters[transaction.data.senderPublicKey]) {
+			console.log(proposedWalletData.voters)
+
 			throw new VotingTransactionErrors.CastVoteAlreadyVotedError();
 		}
 		console.log(proposedWalletData.proposal.duration.blockHeight);
 		const lastBlock: Interfaces.IBlock = this.app.get<any>(Container.Identifiers.StateStore).getLastBlock();
+		console.log(lastBlock.data.height);
+
 		if (proposedWalletData.proposal.duration.blockHeight <= lastBlock.data.height) {
 			throw new VotingTransactionErrors.CastVotelHeightToHighError(
 				lastBlock.data.height,

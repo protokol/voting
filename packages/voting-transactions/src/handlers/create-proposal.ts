@@ -66,7 +66,7 @@ export class CreateProposalHandler extends VotingAbstractTransactionHandler {
 			proposal: transaction.asset.votingCreateProposal,
 			agree: 0,
 			disagree: 0,
-			voters: {},
+			voters: [],
 		};
 		wallet.setAttribute<ICreateProposalWallet>("voting.proposal", proposedWallet);
 

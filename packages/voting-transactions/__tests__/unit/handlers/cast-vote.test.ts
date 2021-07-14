@@ -1,7 +1,7 @@
 import "jest-extended";
 
 import { Application, Container, Contracts } from "@arkecosystem/core-kernel";
-import { Wallets } from "@arkecosystem/core-state";
+import { Stores, Wallets } from "@arkecosystem/core-state";
 import { passphrases } from "@arkecosystem/core-test-framework";
 import { Handlers } from "@arkecosystem/core-transactions";
 import { Interfaces, Transactions } from "@arkecosystem/crypto";
@@ -146,7 +146,7 @@ describe("CastVote", () => {
 				dummyWallet,
 			);
 			const voters = {};
-			voters[senderWallet.getPublicKey()!] = {};
+			voters["0f3bdaef56214296c191fc842adf50018f55dc6be04892dd92fb48874aabf8f5"] = {};
 			dummyWallet.setAttribute("voting.proposal", { voters });
 
 			await expect(handler.throwIfCannotBeApplied(castVoteData, senderWallet)).rejects.toThrowError(
@@ -155,35 +155,40 @@ describe("CastVote", () => {
 		});
 
 		it("Should not Throw", async () => {
-			const dummyWallet = buildWallet(app, passphrases[1]!);
-			walletRepository.setOnIndex(
-				createProposalVotingWalletIndex,
-				"0f3bdaef56214296c191fc842adf50018f55dc6be04892dd92fb48874aabf8f5",
-				dummyWallet,
-			);
-			dummyWallet.setAttribute("voting.proposal", { voters: {} });
-			const dummy = dummyWallet.getAttribute("voting.proposal");
-			dummy["0f3bdaef56214296c191fc842adf50018f55dc6be04892dd92fb48874aabf8f5"] = {
-				proposal: {
-					duration: {
-						blockHeight: 123,
-					},
-					content: "stringqwer123",
-				},
-				voters: {},
-				agree: 0,
-				disagree: 0,
-			};
-			dummyWallet.setAttribute<ICreateProposalWallet>("voting.proposal", dummy);
-
-			castVoteData = new Builders.CastVoteBuilder()
-				.castVote({
-					proposalId: "0f3bdaef56214296c191fc842adf50018f55dc6be04892dd92fb48874aabf8f5",
-					decision: "yes",
-				})
-				.nonce("1")
-				.sign(passphrases[0]!)
-				.build();
+			// const dummyWallet = buildWallet(app, passphrases[1]!);
+			// walletRepository.setOnIndex(
+			// 	createProposalVotingWalletIndex,
+			// 	"0f3bdaef56214296c191fc842adf50018f55dc6be04892dd92fb48874aabf8f5",
+			// 	dummyWallet,
+			// );
+			// dummyWallet.setAttribute("voting.proposal", { voters: [] });
+			// const dummy = dummyWallet.getAttribute("voting.proposal");
+			// dummy["0f3bdaef56214296c191fc842adf50018f55dc6be04892dd92fb48874aabf8f5"] = {
+			// 	proposal: {
+			// 		duration: {
+			// 			blockHeight: 123,
+			// 		},
+			// 		content: "stringqwer123",
+			// 	},
+			// 	voters: [],
+			// 	agree: 0,
+			// 	disagree: 0,
+			// };
+			// dummyWallet.setAttribute<ICreateProposalWallet>("voting.proposal", dummy);
+			//
+			// castVoteData = new Builders.CastVoteBuilder()
+			// 	.castVote({
+			// 		proposalId: "0f3bdaef56214296c191fc842adf50018f55dc6be04892dd92fb48874aabf8f5",
+			// 		decision: "yes",
+			// 	})
+			// 	.nonce("1")
+			// 	.sign(passphrases[1]!)
+			// 	.build();
+			//
+			// const mockLastBlockData: Partial<Interfaces.IBlockData> = { height: 12 };
+			// const mockGetLastBlock = jest.fn();
+			// Stores.StateStore.prototype.getLastBlock = mockGetLastBlock;
+			// mockGetLastBlock.mockReturnValue({ data: mockLastBlockData });
 
 			await expect(handler.throwIfCannotBeApplied(castVoteData, senderWallet)).toResolve();
 		});
