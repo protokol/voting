@@ -45,3 +45,262 @@ jobs:
 
       - name: TEST
         run: cd packages/voting-transactions && yarn test __tests__/functional/transaction-forging/create-proposal/single-passphrase.test.ts --forceExit
+
+  functional-voting-create-proposal-second-passphrase:
+    name: VOTING-CREATE-PROPOSAL-SECOND-PASSPHRASE
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:12
+        env:
+          POSTGRES_USER: ark
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: ark_unitnet
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
+    strategy:
+      matrix:
+        node-version: [ 12.x, 14.x ]
+    env:
+      CORE_DB_DATABASE: ark_unitnet
+      CORE_DB_USERNAME: ark
+      POSTGRES_USER: ark
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: ark_unitnet
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install and build packages
+        run: yarn && yarn build
+
+      - name: TEST
+        run: cd packages/voting-transactions && yarn test __tests__/functional/transaction-forging/create-proposal/second-passphrase.test.ts --forceExit
+
+  functional-voting-create-proposal-multi-signature:
+    name: VOTING-CREATE-PROPOSAL-MULTI-SIGNATURE
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:12
+        env:
+          POSTGRES_USER: ark
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: ark_unitnet
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
+    strategy:
+      matrix:
+        node-version: [ 12.x, 14.x ]
+    env:
+      CORE_DB_DATABASE: ark_unitnet
+      CORE_DB_USERNAME: ark
+      POSTGRES_USER: ark
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: ark_unitnet
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install and build packages
+        run: yarn && yarn build
+
+      - name: TEST
+        run: cd packages/voting-transactions && yarn test __tests__/functional/transaction-forging/create-proposal/multi-signature.test.ts --forceExit
+
+  functional-voting-create-proposal-vendorfield:
+    name: VOTING-CREATE-PROPOSAL-VENDORFIELD
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:12
+        env:
+          POSTGRES_USER: ark
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: ark_unitnet
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
+    strategy:
+      matrix:
+        node-version: [ 12.x, 14.x ]
+    env:
+      CORE_DB_DATABASE: ark_unitnet
+      CORE_DB_USERNAME: ark
+      POSTGRES_USER: ark
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: ark_unitnet
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install and build packages
+        run: yarn && yarn build
+
+      - name: TEST
+        run: cd packages/voting-transactions && yarn test __tests__/functional/transaction-forging/create-proposal/vendor-field.test.ts --forceExit
+
+  functional-voting-cast-vote-single-passphrase:
+    name: VOTING-CAST-VOTE-SINGLE-PASSPHRASE
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:12
+        env:
+          POSTGRES_USER: ark
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: ark_unitnet
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
+    strategy:
+      matrix:
+        node-version: [ 12.x, 14.x ]
+    env:
+      CORE_DB_DATABASE: ark_unitnet
+      CORE_DB_USERNAME: ark
+      POSTGRES_USER: ark
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: ark_unitnet
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install and build packages
+        run: yarn && yarn build
+
+      - name: TEST
+        run: cd packages/voting-transactions && yarn test __tests__/functional/transaction-forging/cast-vote/single-passphrase.test.ts --forceExit
+
+  functional-voting-cast-vote-second-passphrase:
+    name: VOTING-CAST-VOTE-SECOND-PASSPHRASE
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:12
+        env:
+          POSTGRES_USER: ark
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: ark_unitnet
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
+    strategy:
+      matrix:
+        node-version: [ 12.x, 14.x ]
+    env:
+      CORE_DB_DATABASE: ark_unitnet
+      CORE_DB_USERNAME: ark
+      POSTGRES_USER: ark
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: ark_unitnet
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install and build packages
+        run: yarn && yarn build
+
+      - name: TEST
+        run: cd packages/voting-transactions && yarn test __tests__/functional/transaction-forging/cast-vote/second-passphrase.test.ts --forceExit
+
+  functional-voting-cast-vote-multi-signature:
+    name: VOTING-CAST-VOTE-MULTI-SIGNATURE
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:12
+        env:
+          POSTGRES_USER: ark
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: ark_unitnet
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
+    strategy:
+      matrix:
+        node-version: [ 12.x, 14.x ]
+    env:
+      CORE_DB_DATABASE: ark_unitnet
+      CORE_DB_USERNAME: ark
+      POSTGRES_USER: ark
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: ark_unitnet
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install and build packages
+        run: yarn && yarn build
+
+      - name: TEST
+        run: cd packages/voting-transactions && yarn test __tests__/functional/transaction-forging/cast-vote/multi-signature.test.ts --forceExit
+
+  functional-voting-cast-vote-vendorfield:
+    name: VOTING-CAST-VOTE-VENDORFIELD
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:12
+        env:
+          POSTGRES_USER: ark
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: ark_unitnet
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
+    strategy:
+      matrix:
+        node-version: [ 12.x, 14.x ]
+    env:
+      CORE_DB_DATABASE: ark_unitnet
+      CORE_DB_USERNAME: ark
+      POSTGRES_USER: ark
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: ark_unitnet
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install and build packages
+        run: yarn && yarn build
+
+      - name: TEST
+        run: cd packages/voting-transactions && yarn test __tests__/functional/transaction-forging/cast-vote/vendor-field.test.ts --forceExit
