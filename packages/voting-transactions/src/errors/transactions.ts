@@ -27,3 +27,11 @@ export class CastVoteAlreadyVotedError extends Errors.TransactionError {
 		super(`Failed to apply transaction, because wallet already voted.`);
 	}
 }
+
+export class CastVotelHeightToHighError extends Errors.TransactionError {
+	public constructor(blockHeight: number, transactionHeight: number) {
+		super(
+			`Failed to apply transaction, because block height [${blockHeight}] is higher then transaction height [${transactionHeight}].`,
+		);
+	}
+}

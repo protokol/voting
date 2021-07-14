@@ -1,9 +1,10 @@
 import { Container, Contracts, Utils } from "@arkecosystem/core-kernel";
 import { Handlers } from "@arkecosystem/core-transactions";
 import { Interfaces, Transactions } from "@arkecosystem/crypto";
-import { Interfaces as VotingInterfaces, Transactions as VotingTransactions, Enums } from "@protokol/voting-crypto";
+import { Enums, Interfaces as VotingInterfaces, Transactions as VotingTransactions } from "@protokol/voting-crypto";
 
 import { VotingPoolErrors, VotingTransactionErrors } from "../errors";
+import { CastVotelHeightToHighError } from "../errors/transactions";
 import { VotingTransactionsEvents } from "../events";
 import { castVoteVotingWalletIndex, createProposalVotingWalletIndex } from "../indexers";
 import { ICreateProposalWallet } from "../interfaces";
@@ -59,6 +60,14 @@ export class CastVoteHandler extends VotingAbstractTransactionHandler {
 
 		if (proposedWalletData.voters[transaction.data.senderPublicKey]) {
 			throw new VotingTransactionErrors.CastVoteAlreadyVotedError();
+		}
+
+		const lastBlock: Interfaces.IBlock = this.app.get<any>(Container.Identifiers.StateStore).getLastBlock();
+		if (lastBlock.data.height >= proposedWalletData.proposal.duration.blockHeight) {
+			throw new VotingTransactionErrors.CastVotelHeightToHighError(
+				lastBlock.data.height,
+				proposedWalletData.proposal.duration.blockHeight,
+			);
 		}
 
 		return super.throwIfCannotBeApplied(transaction, wallet);
