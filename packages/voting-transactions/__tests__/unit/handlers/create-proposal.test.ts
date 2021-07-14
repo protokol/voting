@@ -116,17 +116,17 @@ describe("CreateProposal", () => {
 
 	describe("throwIfCannotBeApplied", () => {
 		it("Should Throw - CreateProposalHeightToLowError", async () => {
-			const mockLastBlockData: Partial<Interfaces.IBlockData> = { height: 12 };
+			const mockLastBlockData: Partial<Interfaces.IBlockData> = { height: 12345 };
 			const mockGetLastBlock = jest.fn();
 			Stores.StateStore.prototype.getLastBlock = mockGetLastBlock;
 			mockGetLastBlock.mockReturnValue({ data: mockLastBlockData });
 
 			await expect(handler.throwIfCannotBeApplied(actual, senderWallet)).rejects.toThrowError(
-				VotingTransactionErrors.CreateProposalHeightToLowError,
+				VotingTransactionErrors.CreateProposalHeightToHighError,
 			);
 		});
 		it("Should not Throw", async () => {
-			const mockLastBlockData: Partial<Interfaces.IBlockData> = { height: 12345 };
+			const mockLastBlockData: Partial<Interfaces.IBlockData> = { height: 123 };
 			const mockGetLastBlock = jest.fn();
 			Stores.StateStore.prototype.getLastBlock = mockGetLastBlock;
 			mockGetLastBlock.mockReturnValue({ data: mockLastBlockData });

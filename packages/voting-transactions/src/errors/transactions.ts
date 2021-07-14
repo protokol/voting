@@ -7,10 +7,10 @@ export class StaticFeeMismatchError extends Errors.TransactionError {
 	}
 }
 // Create Proposal
-export class CreateProposalHeightToLowError extends Errors.TransactionError {
+export class CreateProposalHeightToHighError extends Errors.TransactionError {
 	public constructor(blockHeight: number, transactionHeight: number) {
 		super(
-			`Failed to apply transaction, because block height [${blockHeight}] is lower then transaction height [${transactionHeight}].`,
+			`Failed to apply transaction, because block height [${blockHeight}] is higher then transaction height [${transactionHeight}].`,
 		);
 	}
 }
