@@ -4,7 +4,6 @@ import { Interfaces, Transactions } from "@arkecosystem/crypto";
 import { Enums, Interfaces as VotingInterfaces, Transactions as VotingTransactions } from "@protokol/voting-crypto";
 
 import { VotingPoolErrors, VotingTransactionErrors } from "../errors";
-import { CastVotelHeightToHighError } from "../errors/transactions";
 import { VotingTransactionsEvents } from "../events";
 import { castVoteVotingWalletIndex, createProposalVotingWalletIndex } from "../indexers";
 import { ICreateProposalWallet } from "../interfaces";
