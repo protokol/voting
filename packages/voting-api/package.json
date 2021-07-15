@@ -1,7 +1,7 @@
 {
 	"name": "@protokol/voting-api",
 	"version": "1.0.0-beta.0",
-	"description": "REST API For Base NFT Functionality",
+	"description": "REST API For Voting Functionality",
 	"license": "CC-BY-NC-SA-4.0",
 	"homepage": "https://github.com/protokol/",
 	"bugs": {
