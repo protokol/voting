@@ -11,7 +11,7 @@ const packageName = require("../../package.json").name;
 const currentVersion = require("../../package.json").version;
 
 @Container.injectable()
-export class ConfigurationController extends Controller {
+export class ConfigurationsController extends Controller {
 	public async index(): Promise<any> {
 		let apiLatestVersion: string;
 		let cryptoLatestVersion: string;
