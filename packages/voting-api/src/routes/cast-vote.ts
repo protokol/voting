@@ -4,7 +4,7 @@ import Joi from "joi";
 
 import { CastVoteController } from "../controllers";
 
-export const register = (server: Hapi.Server, castVoteController: Controller): void => {
+export const register = (server: Hapi.Server, castVoteController: typeof Controller): void => {
 	const controller: CastVoteController = server.app.app.resolve(castVoteController);
 
 	server.bind(controller);

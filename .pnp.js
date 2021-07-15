@@ -289,6 +289,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/crypto", "npm:3.0.0-next.30"],
             ["@arkecosystem/utils", "npm:1.3.0"],
             ["@pm2/io", "npm:4.3.5"],
+            ["@protokol/voting-api", "workspace:packages/voting-api"],
             ["@protokol/voting-transactions", "workspace:packages/voting-transactions"],
             ["chalk", "npm:4.1.1"],
             ["cron", "npm:1.8.2"],
