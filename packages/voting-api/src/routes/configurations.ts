@@ -1,15 +1,17 @@
 import { Controller } from "@arkecosystem/core-api";
 import Hapi from "@hapi/hapi";
 
-export const register = (server: Hapi.Server, registrationController: typeof Controller): void => {
-	// const controller: RegistrationController = server.app.app.resolve(registrationController);
+import { ConfigurationController } from "../controllers/configurations";
 
-	// server.bind(controller);
+export const register = (server: Hapi.Server, configurationsController: typeof Controller): void => {
+	const controller: ConfigurationController = server.app.app.resolve(configurationsController);
+
+	server.bind(controller);
 
 	server.route({
 		method: "GET",
 		path: "/configurations",
-		handler: (request: Hapi.Request) => () => {},
+		handler: () => controller.index(),
 		options: {},
 	});
 };
