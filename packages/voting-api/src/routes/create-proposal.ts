@@ -12,7 +12,7 @@ export const register = (server: Hapi.Server, createProposalController: typeof C
 	server.route({
 		method: "GET",
 		path: "/create/proposal/transactions",
-		handler: (request: Hapi.Request) => () => controller.transactions(request),
+		handler: (request: Hapi.Request) => controller.transactions(request),
 		options: {
 			validate: {
 				query: Joi.object({
@@ -31,7 +31,7 @@ export const register = (server: Hapi.Server, createProposalController: typeof C
 	server.route({
 		method: "GET",
 		path: "/create/proposal/transactions/${id}",
-		handler: (request: Hapi.Request) => () => controller.transaction(request),
+		handler: (request: Hapi.Request) => controller.transaction(request),
 		options: {
 			validate: {
 				query: Joi.object({
@@ -47,7 +47,7 @@ export const register = (server: Hapi.Server, createProposalController: typeof C
 	server.route({
 		method: "GET",
 		path: "/create/proposal/${id}/wallet",
-		handler: (request: Hapi.Request) => () => controller.wallet(request),
+		handler: (request: Hapi.Request) => controller.wallet(request),
 		options: {
 			validate: {
 				params: Joi.object({
