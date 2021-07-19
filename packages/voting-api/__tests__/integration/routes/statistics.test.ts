@@ -16,7 +16,7 @@ beforeAll(async () => {
 afterAll(async () => await tearDown());
 
 describe("API - Statistics", () => {
-	describe("GET - /voting/statistics/${id}", () => {
+	describe("GET - /voting/statistic/${id}", () => {
 		describe("Should Test Statistics Response", () => {
 			let response: any;
 			beforeAll(async () => {
@@ -24,6 +24,7 @@ describe("API - Statistics", () => {
 			});
 
 			it("Should Test If Response Is Successful", async () => {
+				console.log(response);
 				expect(response).not.toBeSuccessfulResponse();
 			});
 		});
