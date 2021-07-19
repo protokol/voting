@@ -1,10 +1,11 @@
 import { Contracts } from "@arkecosystem/core-api";
 import { Container } from "@arkecosystem/core-kernel";
+import { ApiErrors } from "../errors";
 
 @Container.injectable()
 export class StatisticsResource implements Contracts.Resource {
-	public raw(resource): object {
-		return JSON.parse(JSON.stringify(resource));
+	public raw(_resource: object): object {
+		throw new ApiErrors.RawTypeNotSupportedError();
 	}
 
 	public transform(resource): object {
