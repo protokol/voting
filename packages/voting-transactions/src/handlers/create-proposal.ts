@@ -57,11 +57,7 @@ export class CreateProposalHandler extends VotingAbstractTransactionHandler {
 
 		const wallet = this.walletRepository.findByPublicKey(transaction.senderPublicKey);
 
-		if (!wallet.hasAttribute("voting.proposal")) {
-			wallet.setAttribute("voting.proposal", {});
-		}
-
-		const proposedWallet = wallet.getAttribute<ICreateProposalWallet>("voting.proposal");
+		const proposedWallet = wallet.getAttribute<ICreateProposalWallet>("voting.proposal", {});
 		proposedWallet[transaction.id] = {
 			proposal: transaction.asset.votingCreateProposal,
 			agree: 0,
