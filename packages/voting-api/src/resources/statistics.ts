@@ -11,10 +11,11 @@ export class StatisticsResource implements Contracts.Resource {
 
 	public transform(resource): object {
 		const allVoters: number = resource.voters.agree + resource.voters.disagree;
-		const percentageOfAgree: number = (resource.voters.agree / allVoters) * 100;
 
+		let percentageOfAgree = 0;
 		let percentageOfDisagree = 0;
 		if (allVoters != 0) {
+			percentageOfAgree = (resource.voters.agree / allVoters) * 100;
 			percentageOfDisagree = 100 - percentageOfAgree;
 		}
 
