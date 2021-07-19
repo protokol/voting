@@ -1,19 +1,15 @@
 import { Contracts } from "@arkecosystem/core-api";
-import { Container, Contracts as KernelContracts } from "@arkecosystem/core-kernel";
+import { Container } from "@arkecosystem/core-kernel";
 
 @Container.injectable()
 export class StatisticsResource implements Contracts.Resource {
-	// @Container.inject(Container.Identifiers.WalletRepository)
-	// @Container.tagged("state", "blockchain")
-	// private readonly walletRepository!: KernelContracts.State.WalletRepository;
-
 	public raw(resource): object {
 		return JSON.parse(JSON.stringify(resource));
 	}
 
 	public transform(resource): object {
 		const allVoters: number = resource.voters.agree + resource.voters.disagree;
-		let percentageOfAgree: number = (resource.voters.agree / allVoters) * 100;
+		const percentageOfAgree: number = (resource.voters.agree / allVoters) * 100;
 
 		let percentageOfDisagree = 0;
 		if (allVoters != 0) {
