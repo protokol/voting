@@ -8,14 +8,7 @@ export const register = (server: Hapi.Server, registrationController: typeof Con
 
 	server.route({
 		method: "GET",
-		path: "/statistic/${id}/wallet",
-		handler: (request: Hapi.Request) => () => {},
-		options: {},
-	});
-
-	server.route({
-		method: "GET",
-		path: "/statistic/${id}/transaction",
+		path: "/statistic/${id}",
 		handler: (request: Hapi.Request) => () => {},
 		options: {},
 	});
