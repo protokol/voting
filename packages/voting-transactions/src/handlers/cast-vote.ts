@@ -87,7 +87,7 @@ export class CastVoteHandler extends VotingAbstractTransactionHandler {
 		} else {
 			proposedWalletData[castVote.proposalId].disagree++;
 		}
-		proposedWalletData[castVote.proposalId].voters.push(castVote.proposalId);
+		proposedWalletData[castVote.proposalId].voters.push(transaction.senderPublicKey);
 		proposedWallet.setAttribute<ICreateProposalWallet>("voting.proposal", proposedWalletData);
 
 		const castedWallet = this.walletRepository.findByPublicKey(transaction.senderPublicKey);

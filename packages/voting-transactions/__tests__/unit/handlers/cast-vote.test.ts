@@ -213,7 +213,7 @@ describe("CastVote", () => {
 					},
 					content: "stringqwer123",
 				},
-				voters: {},
+				voters: [],
 				agree: 0,
 				disagree: 0,
 			};
