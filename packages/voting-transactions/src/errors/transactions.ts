@@ -10,7 +10,7 @@ export class StaticFeeMismatchError extends Errors.TransactionError {
 export class CreateProposalHeightToHighError extends Errors.TransactionError {
 	public constructor(blockHeight: number, transactionHeight: number) {
 		super(
-			`Failed to apply transaction, because block height [${blockHeight}] is higher then transaction height [${transactionHeight}].`,
+			`Failed to apply transaction, because block height [${blockHeight}] is higher than transaction height [${transactionHeight}].`,
 		);
 	}
 }
@@ -31,7 +31,7 @@ export class CastVoteAlreadyVotedError extends Errors.TransactionError {
 export class CastVotelHeightToHighError extends Errors.TransactionError {
 	public constructor(blockHeight: number, transactionHeight: number) {
 		super(
-			`Failed to apply transaction, because block height [${blockHeight}] is higher then transaction height [${transactionHeight}].`,
+			`Failed to apply transaction, because block height [${blockHeight}] is higher than transaction height [${transactionHeight}].`,
 		);
 	}
 }
