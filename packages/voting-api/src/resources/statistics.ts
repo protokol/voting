@@ -1,5 +1,6 @@
 import { Contracts } from "@arkecosystem/core-api";
 import { Container } from "@arkecosystem/core-kernel";
+
 import { ApiErrors } from "../errors";
 
 @Container.injectable()

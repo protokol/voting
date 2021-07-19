@@ -150,7 +150,7 @@ describe("CastVote", () => {
 				voters: [senderWallet.getPublicKey()!],
 				proposal: { duration: { blockHeight: 1234 } },
 			};
-			dummyWallet.setAttribute("voting.proposal", data);;
+			dummyWallet.setAttribute("voting.proposal", data);
 
 			await expect(handler.throwIfCannotBeApplied(castVoteData, senderWallet)).rejects.toThrowError(
 				VotingErrors.VotingTransactionErrors.CastVoteAlreadyVotedError,

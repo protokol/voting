@@ -51,7 +51,7 @@ describe("Statistics Controller", () => {
 			const response = (await configurationsController.statistics(request)) as ItemResponse;
 
 			expect(response).toBeObject();
-			expect(response).not.toBeEmpty()
+			expect(response).not.toBeEmpty();
 		});
 	});
 });

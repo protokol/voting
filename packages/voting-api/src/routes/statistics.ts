@@ -1,5 +1,6 @@
 import { Controller } from "@arkecosystem/core-api";
 import Hapi from "@hapi/hapi";
+
 import { StatisticsController } from "../controllers";
 
 export const register = (server: Hapi.Server, statisticsController: typeof Controller): void => {

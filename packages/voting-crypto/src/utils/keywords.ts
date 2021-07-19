@@ -1,4 +1,5 @@
 import { Validation } from "@arkecosystem/crypto";
+
 import { VotingOptions } from "../enums";
 
 export const castVoteOptionValidator = (keyword: string): void => {
