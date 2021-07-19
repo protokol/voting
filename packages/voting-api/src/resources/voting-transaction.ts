@@ -11,9 +11,7 @@ export class VotingTransactionResource implements Contracts.Resource {
 		return {
 			id: resource.id,
 			senderPublicKey: resource.senderPublicKey,
-			...(resource.asset.votingCreateProposal
-				? resource.asset.votingCreateProposal
-				: resource.asset.votingCastVote),
+			...(resource.asset.votingCreateProposal || resource.asset.votingCastVote),
 		};
 	}
 }
