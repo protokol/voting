@@ -3142,7 +3142,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest-extended", "npm:0.11.5"],
             ["joi", "npm:17.4.1"],
             ["latest-version", "npm:5.1.0"],
-            ["npm-check-updates", "npm:11.5.13"],
+            ["npm-check-updates", "npm:11.8.3"],
             ["prettier", "npm:2.3.2"],
             ["rimraf", "npm:3.0.2"],
             ["ts-jest", "virtual:302fb8583091ec2a25ae3aa8d44208993a55a08d2d2c24a28fdde0476fe18cea7dca1bf5dd64e1150870e69db870330bfe7df528d83bc276acd69177a34fb425#npm:26.5.6"],
@@ -12533,10 +12533,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["npm-check-updates", [
-        ["npm:11.5.13", {
-          "packageLocation": "./.yarn/cache/npm-check-updates-npm-11.5.13-25db8fab7c-fb3a69d429.zip/node_modules/npm-check-updates/",
+        ["npm:11.8.2", {
+          "packageLocation": "./.yarn/cache/npm-check-updates-npm-11.8.2-88e7d8bf16-80b7c48d45.zip/node_modules/npm-check-updates/",
           "packageDependencies": [
-            ["npm-check-updates", "npm:11.5.13"],
+            ["npm-check-updates", "npm:11.8.2"],
             ["chalk", "npm:4.1.1"],
             ["cint", "npm:8.2.1"],
             ["cli-table", "npm:0.3.6"],
@@ -12567,14 +12567,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],
           "linkType": "HARD",
         }],
-        ["npm:11.8.2", {
-          "packageLocation": "./.yarn/cache/npm-check-updates-npm-11.8.2-88e7d8bf16-80b7c48d45.zip/node_modules/npm-check-updates/",
+        ["npm:11.8.3", {
+          "packageLocation": "./.yarn/cache/npm-check-updates-npm-11.8.3-1fea052a7b-d7c130249b.zip/node_modules/npm-check-updates/",
           "packageDependencies": [
-            ["npm-check-updates", "npm:11.8.2"],
+            ["npm-check-updates", "npm:11.8.3"],
             ["chalk", "npm:4.1.1"],
             ["cint", "npm:8.2.1"],
             ["cli-table", "npm:0.3.6"],
             ["commander", "npm:6.2.1"],
+            ["fast-memoize", "npm:2.5.2"],
             ["find-up", "npm:5.0.0"],
             ["fp-and-or", "npm:0.1.3"],
             ["get-stdin", "npm:8.0.0"],
@@ -12584,7 +12585,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jsonlines", "npm:0.1.1"],
             ["libnpmconfig", "npm:1.2.1"],
             ["lodash", "npm:4.17.21"],
-            ["mem", "npm:8.1.1"],
             ["minimatch", "npm:3.0.4"],
             ["p-map", "npm:4.0.0"],
             ["pacote", "npm:11.3.5"],
