@@ -12,9 +12,6 @@ import { CastVoteHandler } from "./cast-vote";
 
 @Container.injectable()
 export class CreateProposalHandler extends VotingAbstractTransactionHandler {
-	@Container.inject(Container.Identifiers.TransactionPoolQuery)
-	private readonly poolQuery!: Contracts.TransactionPool.Query;
-
 	public getConstructor(): Transactions.TransactionConstructor {
 		return VotingTransactions.CreateProposalTransaction;
 	}
@@ -63,9 +60,8 @@ export class CreateProposalHandler extends VotingAbstractTransactionHandler {
 		);
 		proposedWallet[transaction.id] = {
 			proposal: transaction.asset.votingCreateProposal,
-			agree: 0,
-			disagree: 0,
-			voters: [],
+			agree: [],
+			disagree: [],
 		};
 		wallet.setAttribute<ICreateProposalWallet>("voting.proposal", proposedWallet);
 

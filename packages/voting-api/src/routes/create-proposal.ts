@@ -30,7 +30,7 @@ export const register = (server: Hapi.Server, createProposalController: typeof C
 
 	server.route({
 		method: "GET",
-		path: "/create/proposal/transactions/${id}",
+		path: "/create/proposal/transactions/{id}",
 		handler: (request: Hapi.Request) => controller.transaction(request),
 		options: {
 			validate: {
@@ -46,7 +46,7 @@ export const register = (server: Hapi.Server, createProposalController: typeof C
 
 	server.route({
 		method: "GET",
-		path: "/create/proposal/${id}/wallet",
+		path: "/create/proposal/{id}/wallet",
 		handler: (request: Hapi.Request) => controller.wallet(request),
 		options: {
 			validate: {

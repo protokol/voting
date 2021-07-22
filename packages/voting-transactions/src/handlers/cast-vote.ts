@@ -56,15 +56,16 @@ export class CastVoteHandler extends VotingAbstractTransactionHandler {
 		const proposedWallet = this.walletRepository.findByIndex(createProposalVotingWalletIndex, castVote.proposalId);
 
 		const proposedWalletData = proposedWallet.getAttribute<ICreateProposalWallet>("voting.proposal");
+		const proposal = proposedWalletData[castVote.proposalId]!;
 
-		const voters: string[] = proposedWalletData[castVote.proposalId].voters;
+		const voters: string[] = [...proposal.agree, ...proposal.disagree];
 		if (voters.includes(transaction.data.senderPublicKey)) {
 			throw new VotingTransactionErrors.CastVoteAlreadyVotedError();
 		}
 
 		const lastBlock: Interfaces.IBlock = this.app.get<any>(Container.Identifiers.StateStore).getLastBlock();
 
-		const blockHeight: number = proposedWalletData[castVote.proposalId].proposal.duration.blockHeight;
+		const blockHeight: number = proposal.proposal.duration.blockHeight;
 		if (blockHeight <= lastBlock.data.height) {
 			throw new VotingTransactionErrors.CastVotelHeightToHighError(lastBlock.data.height, blockHeight);
 		}
@@ -78,20 +79,21 @@ export class CastVoteHandler extends VotingAbstractTransactionHandler {
 		Utils.assert.defined<string>(transaction.senderPublicKey);
 
 		const castVote = transaction.asset.votingCastVote;
+		const sender = transaction.senderPublicKey;
 
 		const proposedWallet = this.walletRepository.findByIndex(createProposalVotingWalletIndex, castVote.proposalId);
 
 		const proposedWalletData = proposedWallet.getAttribute<ICreateProposalWallet>("voting.proposal");
+		const proposal = proposedWalletData[castVote.proposalId]!;
+
 		if (castVote.decision === Enums.VotingOptions.Agree) {
-			proposedWalletData[castVote.proposalId].agree++;
+			proposal.agree.push(sender);
 		} else {
-			proposedWalletData[castVote.proposalId].disagree++;
+			proposal.disagree.push(sender);
 		}
-		proposedWalletData[castVote.proposalId].voters.push(transaction.senderPublicKey);
 		proposedWallet.setAttribute<ICreateProposalWallet>("voting.proposal", proposedWalletData);
 
-		const castedWallet = this.walletRepository.findByPublicKey(transaction.senderPublicKey);
-
+		const castedWallet = this.walletRepository.findByPublicKey(sender);
 		this.walletRepository.setOnIndex(castVoteVotingWalletIndex, transaction.id, castedWallet);
 	}
 
@@ -101,15 +103,17 @@ export class CastVoteHandler extends VotingAbstractTransactionHandler {
 		Utils.assert.defined<VotingInterfaces.ICastVote>(transaction.asset?.votingCastVote);
 
 		const castVote = transaction.asset.votingCastVote;
+		const sender = transaction.senderPublicKey;
 
 		const proposedWallet = this.walletRepository.findByIndex(createProposalVotingWalletIndex, castVote.proposalId);
 		const proposedWalletData = proposedWallet.getAttribute<ICreateProposalWallet>("voting.proposal");
+		const proposal = proposedWalletData[castVote.proposalId]!;
+
 		if (castVote.decision === Enums.VotingOptions.Agree) {
-			proposedWalletData[castVote.proposalId].agree--;
+			proposal.agree.splice(proposal.agree.indexOf(sender));
 		} else {
-			proposedWalletData[castVote.proposalId].disagree--;
+			proposal.disagree.splice(proposal.disagree.indexOf(sender));
 		}
-		delete proposedWalletData.voters[castVote.proposalId];
 		proposedWallet.setAttribute<ICreateProposalWallet>("voting.proposal", proposedWalletData);
 
 		this.walletRepository.forgetOnIndex(castVoteVotingWalletIndex, transaction.id);

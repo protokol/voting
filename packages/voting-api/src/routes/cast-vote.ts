@@ -30,7 +30,7 @@ export const register = (server: Hapi.Server, castVoteController: typeof Control
 
 	server.route({
 		method: "GET",
-		path: "/cast/vote/transactions/${id}",
+		path: "/cast/vote/transactions/{id}",
 		handler: (request: Hapi.Request) => controller.transaction(request),
 		options: {
 			validate: {
@@ -46,7 +46,7 @@ export const register = (server: Hapi.Server, castVoteController: typeof Control
 
 	server.route({
 		method: "GET",
-		path: "/cast/vote/${id}/wallet",
+		path: "/cast/vote/{id}/wallet",
 		handler: (request: Hapi.Request) => controller.wallet(request),
 		options: {
 			validate: {

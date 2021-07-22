@@ -10,8 +10,8 @@ export const register = (server: Hapi.Server, statisticsController: typeof Contr
 
 	server.route({
 		method: "GET",
-		path: "/statistic/${id}",
-		handler: (request: Hapi.Request) => () => controller.statistics(request),
+		path: "/statistics/{id}",
+		handler: (request: Hapi.Request) => controller.statistics(request),
 		options: {},
 	});
 };
