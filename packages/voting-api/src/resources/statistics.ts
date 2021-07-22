@@ -10,12 +10,14 @@ export class StatisticsResource implements Contracts.Resource {
 	}
 
 	public transform(resource): object {
-		const allVoters: number = resource.voters.agree + resource.voters.disagree;
+		const agree = resource.voters.agree.length;
+		const disagree = resource.voters.disagree.length;
+		const allVoters: number = agree + disagree;
 
 		let percentageOfAgree = 0;
 		let percentageOfDisagree = 0;
 		if (allVoters != 0) {
-			percentageOfAgree = (resource.voters.agree / allVoters) * 100;
+			percentageOfAgree = (agree / allVoters) * 100;
 			percentageOfDisagree = 100 - percentageOfAgree;
 		}
 
@@ -24,11 +26,11 @@ export class StatisticsResource implements Contracts.Resource {
 			publicKey: resource.publicKey,
 			allVoters: allVoters,
 			agreed: {
-				amount: resource.voters.agree,
+				amount: agree,
 				percentage: percentageOfAgree,
 			},
 			disagreed: {
-				amount: resource.voters.disagree,
+				amount: disagree,
 				percentage: percentageOfDisagree,
 			},
 		};
