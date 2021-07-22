@@ -46,4 +46,9 @@ export const CastVote = async (): Promise<void> => {
 	console.log(JSON.stringify(broadcastResponse.body, null, 4));
 };
 
-void CastVote();
+CastVote()
+	.then(() => process.exit(0))
+	.catch((error) => {
+		console.error(error);
+		process.exit(1);
+	});

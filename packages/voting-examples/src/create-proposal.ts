@@ -48,4 +48,9 @@ export const CreateProposal = async (): Promise<void> => {
 	console.log(JSON.stringify(broadcastResponse.body, null, 4));
 };
 
-void CreateProposal();
+CreateProposal()
+	.then(() => process.exit(0))
+	.catch((error) => {
+		console.error(error);
+		process.exit(1);
+	});
