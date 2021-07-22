@@ -67,15 +67,15 @@
 		"eslint-plugin-prettier": "^3.4.0",
 		"eslint-plugin-simple-import-sort": "^7.0.0",
 		"eslint-plugin-unused-imports": "^1.1.1",
-		"jest": "~27.0.0",
+		"jest": "~27.0.6",
 		"jest-extended": "^0.11.5",
 		"jest-localstorage-mock": "^2.4.10",
 		"nock": "^13.0.11",
 		"npm-check-updates": "^11.5.7",
 		"prettier": "^2.2.1",
 		"rimraf": "^3.0.2",
-		"ts-jest": "^27.0.0",
-		"typescript": "~4.2.3"
+		"ts-jest": "^27.0.4",
+		"typescript": "~4.3.5"
 	},
 	"publishConfig": {
 		"access": "public"
