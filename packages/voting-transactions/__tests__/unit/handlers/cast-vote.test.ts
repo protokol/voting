@@ -147,7 +147,8 @@ describe("CastVote", () => {
 			);
 			const data = {};
 			data["0f3bdaef56214296c191fc842adf50018f55dc6be04892dd92fb48874aabf8f5"] = {
-				voters: [senderWallet.getPublicKey()!],
+				agree: [senderWallet.getPublicKey()!],
+				disagree: [],
 				proposal: { duration: { blockHeight: 1234 } },
 			};
 			dummyWallet.setAttribute("voting.proposal", data);
@@ -172,9 +173,8 @@ describe("CastVote", () => {
 					},
 					content: "stringqwer123",
 				},
-				voters: [],
-				agree: 0,
-				disagree: 0,
+				agree: [],
+				disagree: [],
 			};
 			dummyContentWallet.setAttribute("voting.proposal", dummyContentData);
 
@@ -204,8 +204,7 @@ describe("CastVote", () => {
 				"0f3bdaef56214296c191fc842adf50018f55dc6be04892dd92fb48874aabf8f5",
 				dummyWallet,
 			);
-			dummyWallet.setAttribute("voting.proposal", { voters: {} });
-			const dummy = dummyWallet.getAttribute("voting.proposal");
+			const dummy = dummyWallet.getAttribute("voting.proposal", {});
 			dummy["0f3bdaef56214296c191fc842adf50018f55dc6be04892dd92fb48874aabf8f5"] = {
 				proposal: {
 					duration: {
@@ -213,9 +212,8 @@ describe("CastVote", () => {
 					},
 					content: "stringqwer123",
 				},
-				voters: [],
-				agree: 0,
-				disagree: 0,
+				agree: [],
+				disagree: [],
 			};
 			dummyWallet.setAttribute<ICreateProposalWallet>("voting.proposal", dummy);
 		});

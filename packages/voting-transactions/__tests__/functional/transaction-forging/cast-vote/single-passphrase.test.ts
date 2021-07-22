@@ -46,7 +46,7 @@ describe("CastVote Functional Tests - Signed with one Passphrase", () => {
 		const registration = VotingTransactionFactory.initialize(app)
 			.CastVote({
 				proposalId: proposalId,
-				decision: "No",
+				decision: "no",
 			})
 			.withPassphrase(passphrases[1]!)
 			.createOne();

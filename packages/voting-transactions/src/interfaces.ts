@@ -1,8 +1,9 @@
 import { Interfaces } from "@protokol/voting-crypto";
 
-export interface ICreateProposalWallet extends Record<string, any> {
+interface CreateProposal {
 	proposal: Interfaces.ICreateProposal;
-	agree: number;
-	disagree: number;
-	voters: [];
+	agree: string[];
+	disagree: string[];
 }
+
+export interface ICreateProposalWallet extends Record<string, CreateProposal> {}
