@@ -2590,6 +2590,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@protokol/voting-examples@workspace:packages/voting-examples"
   dependencies:
+    "@arkecosystem/crypto": ^3.0.0-next
     "@protokol/client": ^1.0.0-beta.42
     "@protokol/voting-crypto": "workspace:packages/voting-crypto"
     "@sindresorhus/tsconfig": ~1.0.2

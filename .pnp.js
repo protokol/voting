@@ -3213,6 +3213,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./packages/voting-examples/",
           "packageDependencies": [
             ["@protokol/voting-examples", "workspace:packages/voting-examples"],
+            ["@arkecosystem/crypto", "npm:3.0.0-next.30"],
             ["@protokol/client", "npm:1.0.0-beta.42"],
             ["@protokol/voting-crypto", "workspace:packages/voting-crypto"],
             ["@sindresorhus/tsconfig", "npm:1.0.2"],
