@@ -43,7 +43,7 @@ export const CastVote = async (): Promise<void> => {
 	const broadcastResponse = await client.api("transactions").create({ transactions: [transaction.build().toJson()] });
 
 	// Step 4: Log the response
-	console.log(broadcastResponse.body);
+	console.log(JSON.stringify(broadcastResponse.body, null, 4));
 };
 
 void CastVote();
