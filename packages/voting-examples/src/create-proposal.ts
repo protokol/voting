@@ -45,7 +45,7 @@ export const CreateProposal = async (): Promise<void> => {
 	const broadcastResponse = await client.api("transactions").create({ transactions: [transaction.build().toJson()] });
 
 	// Step 4: Log the response
-	console.log(JSON.stringify(broadcastResponse.body.data, null, 4));
+	console.log(broadcastResponse.body);
 };
 
 void CreateProposal();
