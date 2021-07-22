@@ -5,6 +5,8 @@ import { ApiHelpers } from "@arkecosystem/core-test-framework";
 
 import { setUp, tearDown } from "../__support__/setup";
 
+jest.setTimeout(30000);
+
 let app: Contracts.Kernel.Application;
 let api: ApiHelpers;
 
