@@ -1,5 +1,6 @@
 import { Contracts } from "@arkecosystem/core-api";
 import { Container } from "@arkecosystem/core-kernel";
+import { Utils } from "@arkecosystem/crypto";
 
 import { ApiErrors } from "../errors";
 
@@ -10,27 +11,36 @@ export class StatisticsResource implements Contracts.Resource {
 	}
 
 	public transform(resource): object {
-		const agree = resource.voters.agree.length;
-		const disagree = resource.voters.disagree.length;
-		const allVoters: number = agree + disagree;
+		const { address, publicKey, voters, status } = resource;
+		const agree: Utils.BigNumber = voters.agree.reduce(
+			(acc: Utils.BigNumber, vote) => acc.plus(vote.balance),
+			Utils.BigNumber.ZERO,
+		);
+		const disagree: Utils.BigNumber = voters.disagree.reduce(
+			(acc: Utils.BigNumber, vote) => acc.plus(vote.balance),
+			Utils.BigNumber.ZERO,
+		);
+		const allVoters: Utils.BigNumber = agree.plus(disagree);
 
 		let percentageOfAgree = 0;
 		let percentageOfDisagree = 0;
-		if (allVoters != 0) {
-			percentageOfAgree = (agree / allVoters) * 100;
+		if (!allVoters.isZero()) {
+			const multiplier = 100 * 10 ** 3; // to calculate % using 3 decimal places
+			percentageOfAgree = parseInt(agree.times(multiplier).div(allVoters).toFixed()) / (multiplier / 100);
 			percentageOfDisagree = 100 - percentageOfAgree;
 		}
 
 		return {
-			address: resource.address,
-			publicKey: resource.publicKey,
+			address,
+			publicKey,
+			status,
 			allVoters: allVoters,
 			agreed: {
-				amount: agree,
+				amount: agree.toFixed(),
 				percentage: percentageOfAgree,
 			},
 			disagreed: {
-				amount: disagree,
+				amount: disagree.toFixed(),
 				percentage: percentageOfDisagree,
 			},
 		};
