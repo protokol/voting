@@ -46,8 +46,11 @@
 		"@hapi/hapi": "^20.0.2",
 		"@protokol/voting-crypto": "workspace:packages/voting-crypto",
 		"@protokol/voting-transactions": "workspace:packages/voting-transactions",
+		"better-sqlite3": "^7.4.3",
 		"joi": "^17.3.0",
-		"latest-version": "^5.1.0"
+		"latest-version": "^5.1.0",
+		"reflect-metadata": "^0.1.13",
+		"typeorm": "^0.2.36"
 	},
 	"devDependencies": {
 		"@arkecosystem/core-database": "^3.0.0-next",
