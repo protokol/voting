@@ -32,7 +32,9 @@ export class DatabaseService {
 			type: "better-sqlite3",
 			database: this.configuration.get<string>("dbFilename")!,
 			entities: [__dirname + "/entities/*.js"],
-			synchronize: true,
+			synchronize: false,
+			migrationsRun: true,
+			migrations: [__dirname + "/migrations/*.js"],
 		});
 	}
 
