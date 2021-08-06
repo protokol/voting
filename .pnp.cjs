@@ -243,9 +243,9 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/utils", "npm:1.3.0"],
             ["dayjs", "npm:1.10.6"],
             ["joi", "npm:17.4.1"],
-            ["pg", "virtual:b82d418bb5d8e93b6caee5283d7f6c28b6703fdf8f927ced1656f887a1c1279ae453e57237883d946a412da378861b3cdd268d29d202402cf7241e8ead654ec3#npm:8.6.0"],
+            ["pg", "virtual:9813bf68140caffedbece6dc91e571ea236e63f244b48b45ea99e0d4e934a2d1236899984c65107192d54b6f4b7539aab10a2d63032f17ccf65f8f70c1635f3f#npm:8.6.0"],
             ["reflect-metadata", "npm:0.1.13"],
-            ["typeorm", "npm:0.2.25"]
+            ["typeorm", "virtual:9813bf68140caffedbece6dc91e571ea236e63f244b48b45ea99e0d4e934a2d1236899984c65107192d54b6f4b7539aab10a2d63032f17ccf65f8f70c1635f3f#npm:0.2.25"]
           ],
           "linkType": "HARD",
         }]
@@ -397,7 +397,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["lodash.clonedeep", "npm:4.5.0"],
             ["public-ip", "npm:4.0.4"],
             ["systeminformation", "npm:5.7.11"],
-            ["typeorm", "npm:0.2.25"]
+            ["typeorm", "virtual:574b0ba608845c35adca366a436724c05800cb516124346b52ec8627399bc6d8ff241621e37ce8a068e32180bd34156fff5ec8781b7e16272333aea7954d2621#npm:0.2.25"]
           ],
           "linkType": "HARD",
         }]
@@ -447,7 +447,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["ora", "npm:4.1.1"],
             ["pg-query-stream", "npm:3.4.2"],
             ["pluralize", "npm:8.0.0"],
-            ["typeorm", "npm:0.2.25"],
+            ["typeorm", "virtual:9813bf68140caffedbece6dc91e571ea236e63f244b48b45ea99e0d4e934a2d1236899984c65107192d54b6f4b7539aab10a2d63032f17ccf65f8f70c1635f3f#npm:0.2.25"],
             ["xcase", "npm:2.0.1"]
           ],
           "linkType": "HARD",
@@ -2868,6 +2868,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/semver", "npm:7.3.8"],
             ["@typescript-eslint/eslint-plugin", "virtual:302fb8583091ec2a25ae3aa8d44208993a55a08d2d2c24a28fdde0476fe18cea7dca1bf5dd64e1150870e69db870330bfe7df528d83bc276acd69177a34fb425#npm:4.28.5"],
             ["@typescript-eslint/parser", "virtual:302fb8583091ec2a25ae3aa8d44208993a55a08d2d2c24a28fdde0476fe18cea7dca1bf5dd64e1150870e69db870330bfe7df528d83bc276acd69177a34fb425#npm:4.28.5"],
+            ["better-sqlite3", "npm:7.4.3"],
             ["codecov", "npm:3.8.3"],
             ["cross-env", "npm:7.0.3"],
             ["eslint", "npm:7.31.0"],
@@ -2881,9 +2882,11 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["latest-version", "npm:5.1.0"],
             ["npm-check-updates", "npm:11.8.3"],
             ["prettier", "npm:2.3.2"],
+            ["reflect-metadata", "npm:0.1.13"],
             ["rimraf", "npm:3.0.2"],
             ["ts-jest", "virtual:62d24a1fe733c2d4a00aa66f5c4160609229d7e71a93945c7bd9bb03eb76d17099ccb883a262c1216a2e4f30952a389418a39cde0bb34b256981bc8d47b46d34#npm:27.0.4"],
             ["typedoc", "virtual:fa2fe0813e9fb907f1101f6c09263b86766dc4f8f444a7e63777981cd7dacfb169f20295659fc41d6209beda0cc1330bf18b2d3cd56c925b6ec7dc6ef9abdf0e#npm:0.21.4"],
+            ["typeorm", "virtual:fa2fe0813e9fb907f1101f6c09263b86766dc4f8f444a7e63777981cd7dacfb169f20295659fc41d6209beda0cc1330bf18b2d3cd56c925b6ec7dc6ef9abdf0e#npm:0.2.36"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=d8b4e7"]
           ],
           "linkType": "SOFT",
@@ -3076,6 +3079,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@sinonjs/fake-timers", "npm:7.1.2"],
             ["@sinonjs/commons", "npm:1.8.3"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@sqltools/formatter", [
+        ["npm:1.2.3", {
+          "packageLocation": "./.yarn/cache/@sqltools-formatter-npm-1.2.3-bb0968c039-5d80554b84.zip/node_modules/@sqltools/formatter/",
+          "packageDependencies": [
+            ["@sqltools/formatter", "npm:1.2.3"]
           ],
           "linkType": "HARD",
         }]
@@ -3549,6 +3561,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@types-yargs-parser-npm-20.2.1-2eed5b5c1c-1d039e6449.zip/node_modules/@types/yargs-parser/",
           "packageDependencies": [
             ["@types/yargs-parser", "npm:20.2.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@types/zen-observable", [
+        ["npm:0.8.3", {
+          "packageLocation": "./.yarn/cache/@types-zen-observable-npm-0.8.3-b3fac445d1-08c88354ab.zip/node_modules/@types/zen-observable/",
+          "packageDependencies": [
+            ["@types/zen-observable", "npm:0.8.3"]
           ],
           "linkType": "HARD",
         }]
@@ -5028,6 +5049,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["ieee754", "npm:1.2.1"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:6.0.3", {
+          "packageLocation": "./.yarn/cache/buffer-npm-6.0.3-cd90dfedfe-5ad23293d9.zip/node_modules/buffer/",
+          "packageDependencies": [
+            ["buffer", "npm:6.0.3"],
+            ["base64-js", "npm:1.5.1"],
+            ["ieee754", "npm:1.2.1"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["buffer-crc32", [
@@ -6487,6 +6517,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/dotenv-npm-6.2.0-72b7dafc27-d4aa189741.zip/node_modules/dotenv/",
           "packageDependencies": [
             ["dotenv", "npm:6.2.0"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:8.6.0", {
+          "packageLocation": "./.yarn/cache/dotenv-npm-8.6.0-2ce3e9f7bb-38e902c80b.zip/node_modules/dotenv/",
+          "packageDependencies": [
+            ["dotenv", "npm:8.6.0"]
           ],
           "linkType": "HARD",
         }]
@@ -12585,16 +12622,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],
           "linkType": "SOFT",
         }],
-        ["virtual:b82d418bb5d8e93b6caee5283d7f6c28b6703fdf8f927ced1656f887a1c1279ae453e57237883d946a412da378861b3cdd268d29d202402cf7241e8ead654ec3#npm:8.6.0", {
-          "packageLocation": "./.yarn/__virtual__/pg-virtual-8490f09322/0/cache/pg-npm-8.6.0-5a6707a5ba-37d5d656bf.zip/node_modules/pg/",
+        ["virtual:9813bf68140caffedbece6dc91e571ea236e63f244b48b45ea99e0d4e934a2d1236899984c65107192d54b6f4b7539aab10a2d63032f17ccf65f8f70c1635f3f#npm:8.6.0", {
+          "packageLocation": "./.yarn/__virtual__/pg-virtual-89b57d1484/0/cache/pg-npm-8.6.0-5a6707a5ba-37d5d656bf.zip/node_modules/pg/",
           "packageDependencies": [
-            ["pg", "virtual:b82d418bb5d8e93b6caee5283d7f6c28b6703fdf8f927ced1656f887a1c1279ae453e57237883d946a412da378861b3cdd268d29d202402cf7241e8ead654ec3#npm:8.6.0"],
+            ["pg", "virtual:9813bf68140caffedbece6dc91e571ea236e63f244b48b45ea99e0d4e934a2d1236899984c65107192d54b6f4b7539aab10a2d63032f17ccf65f8f70c1635f3f#npm:8.6.0"],
             ["@types/pg-native", null],
             ["buffer-writer", "npm:2.0.0"],
             ["packet-reader", "npm:1.0.0"],
             ["pg-connection-string", "npm:2.5.0"],
             ["pg-native", null],
-            ["pg-pool", "virtual:8490f093221a01a262e32a8259901a6fe4655303473635756054586ec07fd67566b30a16f8310b2ed07b7acfc444f88eefac89e01b79deeeb71dc7061685d586#npm:3.3.0"],
+            ["pg-pool", "virtual:89b57d14842ece0211025ce95c291d42eeaf2d779e6042bda33f2d78929bccb3e4bf43259e5cf9cacd941cc2d9aede66bf657f82ecebc4272a6aa844bae7a1d0#npm:3.3.0"],
             ["pg-protocol", "npm:1.5.0"],
             ["pg-types", "npm:2.2.0"],
             ["pgpass", "npm:1.0.4"]
@@ -12628,7 +12665,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["pg-cursor", "virtual:022a5c9dec01b9e9c0641430b9488d0aabf3e2ba2bfd2722fb44d7d3182dbcdd0d6f44ca7683d1cd9060c6fc0a975963b38b44cf8bc45b9dae6d7694c9ecb5b4#npm:2.6.0"],
             ["@types/pg", null],
-            ["pg", "virtual:b82d418bb5d8e93b6caee5283d7f6c28b6703fdf8f927ced1656f887a1c1279ae453e57237883d946a412da378861b3cdd268d29d202402cf7241e8ead654ec3#npm:8.6.0"]
+            ["pg", "virtual:9813bf68140caffedbece6dc91e571ea236e63f244b48b45ea99e0d4e934a2d1236899984c65107192d54b6f4b7539aab10a2d63032f17ccf65f8f70c1635f3f#npm:8.6.0"]
           ],
           "packagePeers": [
             "@types/pg"
@@ -12653,12 +12690,12 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],
           "linkType": "SOFT",
         }],
-        ["virtual:8490f093221a01a262e32a8259901a6fe4655303473635756054586ec07fd67566b30a16f8310b2ed07b7acfc444f88eefac89e01b79deeeb71dc7061685d586#npm:3.3.0", {
-          "packageLocation": "./.yarn/__virtual__/pg-pool-virtual-b7e9f2a3be/0/cache/pg-pool-npm-3.3.0-ad591c0006-f85cef5b3f.zip/node_modules/pg-pool/",
+        ["virtual:89b57d14842ece0211025ce95c291d42eeaf2d779e6042bda33f2d78929bccb3e4bf43259e5cf9cacd941cc2d9aede66bf657f82ecebc4272a6aa844bae7a1d0#npm:3.3.0", {
+          "packageLocation": "./.yarn/__virtual__/pg-pool-virtual-d65383a944/0/cache/pg-pool-npm-3.3.0-ad591c0006-f85cef5b3f.zip/node_modules/pg-pool/",
           "packageDependencies": [
-            ["pg-pool", "virtual:8490f093221a01a262e32a8259901a6fe4655303473635756054586ec07fd67566b30a16f8310b2ed07b7acfc444f88eefac89e01b79deeeb71dc7061685d586#npm:3.3.0"],
+            ["pg-pool", "virtual:89b57d14842ece0211025ce95c291d42eeaf2d779e6042bda33f2d78929bccb3e4bf43259e5cf9cacd941cc2d9aede66bf657f82ecebc4272a6aa844bae7a1d0#npm:3.3.0"],
             ["@types/pg", null],
-            ["pg", "virtual:b82d418bb5d8e93b6caee5283d7f6c28b6703fdf8f927ced1656f887a1c1279ae453e57237883d946a412da378861b3cdd268d29d202402cf7241e8ead654ec3#npm:8.6.0"]
+            ["pg", "virtual:9813bf68140caffedbece6dc91e571ea236e63f244b48b45ea99e0d4e934a2d1236899984c65107192d54b6f4b7539aab10a2d63032f17ccf65f8f70c1635f3f#npm:8.6.0"]
           ],
           "packagePeers": [
             "@types/pg",
@@ -15328,8 +15365,24 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         ["npm:0.2.25", {
           "packageLocation": "./.yarn/cache/typeorm-npm-0.2.25-75c807624a-29e9945cc1.zip/node_modules/typeorm/",
           "packageDependencies": [
-            ["typeorm", "npm:0.2.25"],
+            ["typeorm", "npm:0.2.25"]
+          ],
+          "linkType": "SOFT",
+        }],
+        ["npm:0.2.36", {
+          "packageLocation": "./.yarn/cache/typeorm-npm-0.2.36-2cc33b4daf-61ce126208.zip/node_modules/typeorm/",
+          "packageDependencies": [
+            ["typeorm", "npm:0.2.36"]
+          ],
+          "linkType": "SOFT",
+        }],
+        ["virtual:574b0ba608845c35adca366a436724c05800cb516124346b52ec8627399bc6d8ff241621e37ce8a068e32180bd34156fff5ec8781b7e16272333aea7954d2621#npm:0.2.25", {
+          "packageLocation": "./.yarn/__virtual__/typeorm-virtual-ffc14fc67b/0/cache/typeorm-npm-0.2.25-75c807624a-29e9945cc1.zip/node_modules/typeorm/",
+          "packageDependencies": [
+            ["typeorm", "virtual:574b0ba608845c35adca366a436724c05800cb516124346b52ec8627399bc6d8ff241621e37ce8a068e32180bd34156fff5ec8781b7e16272333aea7954d2621#npm:0.2.25"],
+            ["@types/better-sqlite3", null],
             ["app-root-path", "npm:3.0.0"],
+            ["better-sqlite3", "npm:7.4.3"],
             ["buffer", "npm:5.7.1"],
             ["chalk", "npm:2.4.2"],
             ["cli-highlight", "npm:2.1.11"],
@@ -15338,7 +15391,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["glob", "npm:7.1.7"],
             ["js-yaml", "npm:3.14.1"],
             ["mkdirp", "npm:1.0.4"],
-            ["pg", "virtual:b82d418bb5d8e93b6caee5283d7f6c28b6703fdf8f927ced1656f887a1c1279ae453e57237883d946a412da378861b3cdd268d29d202402cf7241e8ead654ec3#npm:8.6.0"],
+            ["pg", "virtual:9813bf68140caffedbece6dc91e571ea236e63f244b48b45ea99e0d4e934a2d1236899984c65107192d54b6f4b7539aab10a2d63032f17ccf65f8f70c1635f3f#npm:8.6.0"],
             ["pg-query-stream", "npm:4.1.0"],
             ["reflect-metadata", "npm:0.1.13"],
             ["sha.js", "npm:2.4.11"],
@@ -15346,6 +15399,124 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["xml2js", "npm:0.4.23"],
             ["yargonaut", "npm:1.1.4"],
             ["yargs", "npm:13.3.2"]
+          ],
+          "packagePeers": [
+            "@types/better-sqlite3",
+            "better-sqlite3"
+          ],
+          "linkType": "HARD",
+        }],
+        ["virtual:9813bf68140caffedbece6dc91e571ea236e63f244b48b45ea99e0d4e934a2d1236899984c65107192d54b6f4b7539aab10a2d63032f17ccf65f8f70c1635f3f#npm:0.2.25", {
+          "packageLocation": "./.yarn/__virtual__/typeorm-virtual-56699de7f3/0/cache/typeorm-npm-0.2.25-75c807624a-29e9945cc1.zip/node_modules/typeorm/",
+          "packageDependencies": [
+            ["typeorm", "virtual:9813bf68140caffedbece6dc91e571ea236e63f244b48b45ea99e0d4e934a2d1236899984c65107192d54b6f4b7539aab10a2d63032f17ccf65f8f70c1635f3f#npm:0.2.25"],
+            ["@types/better-sqlite3", null],
+            ["app-root-path", "npm:3.0.0"],
+            ["better-sqlite3", null],
+            ["buffer", "npm:5.7.1"],
+            ["chalk", "npm:2.4.2"],
+            ["cli-highlight", "npm:2.1.11"],
+            ["debug", "virtual:4d5b41b4c144bc0f7c0e4c4c2164d0bc5d527811557a2fd7f2ec3307b1cf1ca97f42a730a90b32caada41091b3e922a1e5a2d8c6ff2841b6857305532c68aca8#npm:4.3.2"],
+            ["dotenv", "npm:6.2.0"],
+            ["glob", "npm:7.1.7"],
+            ["js-yaml", "npm:3.14.1"],
+            ["mkdirp", "npm:1.0.4"],
+            ["pg", "virtual:9813bf68140caffedbece6dc91e571ea236e63f244b48b45ea99e0d4e934a2d1236899984c65107192d54b6f4b7539aab10a2d63032f17ccf65f8f70c1635f3f#npm:8.6.0"],
+            ["pg-query-stream", "npm:4.1.0"],
+            ["reflect-metadata", "npm:0.1.13"],
+            ["sha.js", "npm:2.4.11"],
+            ["tslib", "npm:1.14.1"],
+            ["xml2js", "npm:0.4.23"],
+            ["yargonaut", "npm:1.1.4"],
+            ["yargs", "npm:13.3.2"]
+          ],
+          "packagePeers": [
+            "@types/better-sqlite3",
+            "better-sqlite3"
+          ],
+          "linkType": "HARD",
+        }],
+        ["virtual:fa2fe0813e9fb907f1101f6c09263b86766dc4f8f444a7e63777981cd7dacfb169f20295659fc41d6209beda0cc1330bf18b2d3cd56c925b6ec7dc6ef9abdf0e#npm:0.2.36", {
+          "packageLocation": "./.yarn/__virtual__/typeorm-virtual-890d9ff14e/0/cache/typeorm-npm-0.2.36-2cc33b4daf-61ce126208.zip/node_modules/typeorm/",
+          "packageDependencies": [
+            ["typeorm", "virtual:fa2fe0813e9fb907f1101f6c09263b86766dc4f8f444a7e63777981cd7dacfb169f20295659fc41d6209beda0cc1330bf18b2d3cd56c925b6ec7dc6ef9abdf0e#npm:0.2.36"],
+            ["@sap/hana-client", null],
+            ["@sqltools/formatter", "npm:1.2.3"],
+            ["@types/better-sqlite3", null],
+            ["@types/hdb-pool", null],
+            ["@types/ioredis", null],
+            ["@types/mongodb", null],
+            ["@types/mssql", null],
+            ["@types/mysql2", null],
+            ["@types/oracledb", null],
+            ["@types/pg", null],
+            ["@types/pg-native", null],
+            ["@types/pg-query-stream", null],
+            ["@types/redis", null],
+            ["@types/sap__hana-client", null],
+            ["@types/sql.js", null],
+            ["@types/sqlite3", null],
+            ["@types/typeorm-aurora-data-api-driver", null],
+            ["app-root-path", "npm:3.0.0"],
+            ["better-sqlite3", "npm:7.4.3"],
+            ["buffer", "npm:6.0.3"],
+            ["chalk", "npm:4.1.1"],
+            ["cli-highlight", "npm:2.1.11"],
+            ["debug", "virtual:4d5b41b4c144bc0f7c0e4c4c2164d0bc5d527811557a2fd7f2ec3307b1cf1ca97f42a730a90b32caada41091b3e922a1e5a2d8c6ff2841b6857305532c68aca8#npm:4.3.2"],
+            ["dotenv", "npm:8.6.0"],
+            ["glob", "npm:7.1.7"],
+            ["hdb-pool", null],
+            ["ioredis", null],
+            ["js-yaml", "npm:4.1.0"],
+            ["mkdirp", "npm:1.0.4"],
+            ["mongodb", null],
+            ["mssql", null],
+            ["mysql2", null],
+            ["oracledb", null],
+            ["pg", "virtual:9813bf68140caffedbece6dc91e571ea236e63f244b48b45ea99e0d4e934a2d1236899984c65107192d54b6f4b7539aab10a2d63032f17ccf65f8f70c1635f3f#npm:8.6.0"],
+            ["pg-native", null],
+            ["pg-query-stream", "npm:4.1.0"],
+            ["redis", null],
+            ["reflect-metadata", "npm:0.1.13"],
+            ["sha.js", "npm:2.4.11"],
+            ["sql.js", null],
+            ["sqlite3", null],
+            ["tslib", "npm:2.3.0"],
+            ["typeorm-aurora-data-api-driver", null],
+            ["xml2js", "npm:0.4.23"],
+            ["yargonaut", "npm:1.1.4"],
+            ["yargs", "npm:17.0.1"],
+            ["zen-observable-ts", "npm:1.1.0"]
+          ],
+          "packagePeers": [
+            "@sap/hana-client",
+            "@types/better-sqlite3",
+            "@types/hdb-pool",
+            "@types/ioredis",
+            "@types/mongodb",
+            "@types/mssql",
+            "@types/mysql2",
+            "@types/oracledb",
+            "@types/pg-native",
+            "@types/pg-query-stream",
+            "@types/pg",
+            "@types/redis",
+            "@types/sap__hana-client",
+            "@types/sql.js",
+            "@types/sqlite3",
+            "@types/typeorm-aurora-data-api-driver",
+            "better-sqlite3",
+            "hdb-pool",
+            "ioredis",
+            "mongodb",
+            "mssql",
+            "mysql2",
+            "oracledb",
+            "pg-native",
+            "redis",
+            "sql.js",
+            "sqlite3",
+            "typeorm-aurora-data-api-driver"
           ],
           "linkType": "HARD",
         }]
@@ -16057,6 +16228,20 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["yargs-parser", "npm:20.2.9"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:17.0.1", {
+          "packageLocation": "./.yarn/cache/yargs-npm-17.0.1-1d996d62b1-4ffffa5a82.zip/node_modules/yargs/",
+          "packageDependencies": [
+            ["yargs", "npm:17.0.1"],
+            ["cliui", "npm:7.0.4"],
+            ["escalade", "npm:3.1.1"],
+            ["get-caller-file", "npm:2.0.5"],
+            ["require-directory", "npm:2.1.1"],
+            ["string-width", "npm:4.2.2"],
+            ["y18n", "npm:5.0.8"],
+            ["yargs-parser", "npm:20.2.9"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["yargs-parser", [
@@ -16082,6 +16267,26 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/yocto-queue-npm-0.1.0-c6c9a7db29-f77b3d8d00.zip/node_modules/yocto-queue/",
           "packageDependencies": [
             ["yocto-queue", "npm:0.1.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["zen-observable", [
+        ["npm:0.8.15", {
+          "packageLocation": "./.yarn/cache/zen-observable-npm-0.8.15-3bec99c19c-b7289084bc.zip/node_modules/zen-observable/",
+          "packageDependencies": [
+            ["zen-observable", "npm:0.8.15"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["zen-observable-ts", [
+        ["npm:1.1.0", {
+          "packageLocation": "./.yarn/cache/zen-observable-ts-npm-1.1.0-82f7da2594-1772727f2c.zip/node_modules/zen-observable-ts/",
+          "packageDependencies": [
+            ["zen-observable-ts", "npm:1.1.0"],
+            ["@types/zen-observable", "npm:0.8.3"],
+            ["zen-observable", "npm:0.8.15"]
           ],
           "linkType": "HARD",
         }]

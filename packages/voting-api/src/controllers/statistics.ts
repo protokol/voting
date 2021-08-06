@@ -3,8 +3,11 @@ import { Container, Contracts } from "@arkecosystem/core-kernel";
 import { Utils } from "@arkecosystem/crypto";
 import Hapi from "@hapi/hapi";
 import { Indexers } from "@protokol/voting-transactions";
+import { getRepository } from "typeorm";
 
+import { BlockBalance } from "../entities";
 import { VotingStatusEnum } from "../enums";
+import { WalletBalance } from "../interfaces";
 import { StatisticsResource } from "../resources/statistics";
 
 @Container.injectable()
@@ -17,17 +20,15 @@ export class StatisticsController extends Controller {
 	protected readonly stateStore!: Contracts.State.StateStore;
 
 	public async statistics(request: Hapi.Request): Promise<any> {
-		const proposedWallet = this.walletRepository.findByIndex(
-			Indexers.createProposalVotingWalletIndex,
-			request.params.id,
-		);
+		const { id } = request.params;
+		const proposedWallet = this.walletRepository.findByIndex(Indexers.createProposalVotingWalletIndex, id);
 
 		const proposedWalletData = proposedWallet.getAttribute("voting.proposal");
-		const proposedData = proposedWalletData[request.params.id];
+		const proposedData = proposedWalletData[id];
 		const { blockHeight } = proposedData.proposal.duration;
 
-		let agree: { publicKey: string; balance: Utils.BigNumber }[];
-		let disagree: { publicKey: string; balance: Utils.BigNumber }[];
+		let agree: WalletBalance[];
+		let disagree: WalletBalance[];
 		let status: VotingStatusEnum;
 		if (blockHeight > this.stateStore.getLastBlock().data.height) {
 			agree = proposedData.agree.map((publicKey) => ({
@@ -40,9 +41,9 @@ export class StatisticsController extends Controller {
 			}));
 			status = VotingStatusEnum.IN_PROGRESS;
 		} else {
-			// TODO fetch from database
-			agree = proposedData.agree.map((publicKey) => ({ publicKey, balance: Utils.BigNumber.ONE }));
-			disagree = proposedData.disagree.map((publicKey) => ({ publicKey, balance: Utils.BigNumber.ONE }));
+			const blockBalance = await getRepository(BlockBalance).findOneOrFail({ id });
+			agree = blockBalance.agree;
+			disagree = blockBalance.disagree;
 			status = VotingStatusEnum.FINISHED;
 		}
 
