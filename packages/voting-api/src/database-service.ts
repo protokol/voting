@@ -1,9 +1,7 @@
 import { Container, Contracts, Enums, Providers } from "@arkecosystem/core-kernel";
-import { Interfaces } from "@arkecosystem/crypto";
-import { Indexers } from "@protokol/voting-transactions";
-import { Connection, createConnection, getRepository } from "typeorm";
+import { Connection, createConnection } from "typeorm";
 
-import { BlockBalance } from "./entities";
+import { EventFactory } from "./events";
 
 const pluginName = require("../package.json").name;
 
@@ -43,47 +41,10 @@ export class DatabaseService {
 	}
 
 	private setupListeners(): void {
-		const blockBalancesRepository = getRepository(BlockBalance);
+		const eventFactory = new EventFactory();
 		this.events.listenMany([
-			[
-				Enums.BlockEvent.Applied,
-				{
-					handle: async ({ data }: { data: Interfaces.IBlockData }) => {
-						const filteredProposals = this.walletRepository
-							.getIndex(Indexers.createProposalVotingWalletIndex)
-							.entries()
-							.reduce((proposals, [id, wallet]) => {
-								const proposal = wallet.getAttribute("voting.proposal")[id];
-								if (proposal.proposal.duration.blockHeight === data.height) {
-									const blockBalance = new BlockBalance(
-										id,
-										data.id!,
-										proposal.agree.map((publicKey) => ({
-											publicKey,
-											balance: this.walletRepository.findByPublicKey(publicKey).getBalance(),
-										})),
-										proposal.disagree.map((publicKey) => ({
-											publicKey,
-											balance: this.walletRepository.findByPublicKey(publicKey).getBalance(),
-										})),
-									);
-									proposals.push(blockBalance);
-								}
-								return proposals;
-							}, [] as BlockBalance[]);
-						if (filteredProposals.length) {
-							await blockBalancesRepository.insert(filteredProposals);
-						}
-					},
-				},
-			],
-			[
-				Enums.BlockEvent.Reverted,
-				{
-					handle: async ({ data }: { data: Interfaces.IBlockData }) =>
-						await blockBalancesRepository.delete({ blockId: data.id }),
-				},
-			],
+			[Enums.BlockEvent.Applied, eventFactory.blockAppliedEvent(this.walletRepository)],
+			[Enums.BlockEvent.Reverted, eventFactory.blockRevertEvent()],
 		]);
 	}
 }
