@@ -62,7 +62,7 @@
 		"delay": "^5.0.0",
 		"eslint": "^7.25.0",
 		"eslint-config-prettier": "^8.2.0",
-		"eslint-plugin-import": "~2.23.0",
+		"eslint-plugin-import": "~2.24.0",
 		"eslint-plugin-jest": "^24.3.6",
 		"eslint-plugin-prettier": "^3.4.0",
 		"eslint-plugin-simple-import-sort": "^7.0.0",
