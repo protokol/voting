@@ -17,12 +17,7 @@ export const CreateProposal = async (): Promise<void> => {
 		},
 	} = await client.get("blockchain");
 
-	Managers.configManager.setConfig({
-		network: configs.body.data.network,
-		milestones: configs.body.data.milestones,
-		genesisBlock: Managers.configManager.getPreset("devnet").genesisBlock,
-		exceptions: configs.body.data.exceptions,
-	});
+	Managers.configManager.setConfig({ ...configs.body.data } as any);
 	Managers.configManager.setHeight(height);
 	Transactions.TransactionRegistry.registerTransactionType(VotingTransactions.CreateProposalTransaction);
 
@@ -36,7 +31,7 @@ export const CreateProposal = async (): Promise<void> => {
 			duration: {
 				blockHeight: 123456,
 			},
-			content: "qwertz",
+			content: "QmPfdpTRbhGVZZWKZDzNT5T4NB6C7fFo5wM9Xe8qmLCXWt",
 		})
 		.nonce(senderNonce.toFixed())
 		.sign(passphrase);

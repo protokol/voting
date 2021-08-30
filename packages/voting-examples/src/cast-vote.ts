@@ -17,12 +17,7 @@ export const CastVote = async (): Promise<void> => {
 		},
 	} = await client.get("blockchain");
 
-	Managers.configManager.setConfig({
-		network: configs.body.data.network,
-		milestones: configs.body.data.milestones,
-		genesisBlock: Managers.configManager.getPreset("devnet").genesisBlock,
-		exceptions: configs.body.data.exceptions,
-	});
+	Managers.configManager.setConfig({ ...configs.body.data } as any);
 	Managers.configManager.setHeight(height);
 	Transactions.TransactionRegistry.registerTransactionType(VotingTransactions.CastVoteTransaction);
 
