@@ -26,7 +26,7 @@ export abstract class VotingAbstractTransactionHandler extends Handlers.Transact
 		};
 	}
 
-	public dynamicFee({
+	public override dynamicFee({
 		addonBytes,
 		satoshiPerByte,
 		transaction,
@@ -45,7 +45,7 @@ export abstract class VotingAbstractTransactionHandler extends Handlers.Transact
 		return super.dynamicFee({ addonBytes, satoshiPerByte, transaction, height });
 	}
 
-	public async throwIfCannotBeApplied(
+	public override async throwIfCannotBeApplied(
 		transaction: Interfaces.ITransaction,
 		wallet: Contracts.State.Wallet,
 	): Promise<void> {
@@ -78,12 +78,12 @@ export abstract class VotingAbstractTransactionHandler extends Handlers.Transact
 		}
 	}
 
-	public async apply(transaction: Interfaces.ITransaction): Promise<void> {
+	public override async apply(transaction: Interfaces.ITransaction): Promise<void> {
 		await super.apply(transaction);
 		await this.applyVotingTransaction(transaction.data);
 	}
 
-	public async revert(transaction: Interfaces.ITransaction): Promise<void> {
+	public override async revert(transaction: Interfaces.ITransaction): Promise<void> {
 		await super.revert(transaction);
 		await this.revertVotingTransaction(transaction.data);
 	}

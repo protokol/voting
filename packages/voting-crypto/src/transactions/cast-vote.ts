@@ -7,12 +7,12 @@ import { ICastVote } from "../interfaces";
 import { AbstractVotingTransaction } from "./abstract-transaction";
 
 export class CastVoteTransaction extends AbstractVotingTransaction {
-	public static readonly type: number = VotingTransactionTypes.CastVote;
-	public static readonly key: string = "CastVote";
+	public static override readonly type: number = VotingTransactionTypes.CastVote;
+	public static override readonly key: string = "CastVote";
 
-	protected static readonly defaultStaticFee = Utils.BigNumber.make(VotingStaticFees.CastVote);
+	protected static override readonly defaultStaticFee = Utils.BigNumber.make(VotingStaticFees.CastVote);
 
-	public static getAssetSchema(): Record<string, any> {
+	public static override getAssetSchema(): Record<string, any> {
 		return {
 			type: "object",
 			required: ["votingCastVote"],

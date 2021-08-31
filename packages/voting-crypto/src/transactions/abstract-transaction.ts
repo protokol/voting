@@ -5,10 +5,10 @@ import { VotingTransactionGroup, VotingTransactionVersion } from "../enums";
 const { schemas } = Transactions;
 
 export abstract class AbstractVotingTransaction extends Transactions.Transaction {
-	public static readonly typeGroup: number = VotingTransactionGroup;
-	public static readonly version: number = VotingTransactionVersion;
+	public static override readonly typeGroup: number = VotingTransactionGroup;
+	public static override readonly version: number = VotingTransactionVersion;
 
-	public static getSchema(): Transactions.schemas.TransactionSchema {
+	public static override getSchema(): Transactions.schemas.TransactionSchema {
 		return schemas.extend(schemas.transactionBaseSchema, {
 			$id: this.key,
 			required: ["asset", "typeGroup"],
@@ -28,7 +28,7 @@ export abstract class AbstractVotingTransaction extends Transactions.Transaction
 		throw new Errors.NotImplemented();
 	}
 
-	public hasVendorField(): boolean {
+	public override hasVendorField(): boolean {
 		return true;
 	}
 }

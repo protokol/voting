@@ -7,7 +7,7 @@ export class VotingTransactionFactory extends TransactionFactory {
 		super(app);
 	}
 
-	public static initialize(app?: Contracts.Kernel.Application): VotingTransactionFactory {
+	public static override initialize(app?: Contracts.Kernel.Application): VotingTransactionFactory {
 		return new VotingTransactionFactory(app);
 	}
 

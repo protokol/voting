@@ -24,11 +24,11 @@ export class CreateProposalHandler extends VotingAbstractTransactionHandler {
 		return ["voting.proposal"];
 	}
 
-	public emitEvents(transaction: Interfaces.ITransaction, emitter: Contracts.Kernel.EventDispatcher): void {
+	public override emitEvents(transaction: Interfaces.ITransaction, emitter: Contracts.Kernel.EventDispatcher): void {
 		void emitter.dispatch(VotingTransactionsEvents.createProposal, transaction.data);
 	}
 
-	public async throwIfCannotBeApplied(
+	public override async throwIfCannotBeApplied(
 		transaction: Interfaces.ITransaction,
 		wallet: Contracts.State.Wallet,
 	): Promise<void> {
