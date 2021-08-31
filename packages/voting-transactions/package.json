@@ -48,7 +48,7 @@
 	"devDependencies": {
 		"@arkecosystem/core-test-framework": "^3.0.0-next",
 		"@arkecosystem/core-transaction-pool": "^3.0.0-next",
-		"@sindresorhus/tsconfig": "^1.0.2",
+		"@sindresorhus/tsconfig": "^2.0.0",
 		"@types/bytebuffer": "^5.0.42",
 		"@types/eslint": "^7.2.10",
 		"@types/jest": "^27.0.0",

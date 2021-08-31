@@ -35,7 +35,7 @@
   	  	"@protokol/voting-crypto": "workspace:packages/voting-crypto"
   	},
   	"devDependencies": {
-  	  	"@sindresorhus/tsconfig": "~1.0.2",
+  	  	"@sindresorhus/tsconfig": "~2.0.0",
   	  	"@types/node": "^14.17.2",
   	  	"@types/rimraf": "^3.0.0",
   	  	"rimraf": "^3.0.2",
