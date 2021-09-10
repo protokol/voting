@@ -24,13 +24,13 @@ export class ConfigurationsController extends Controller {
 		}
 
 		try {
-			cryptoLatestVersion = await latestVersion("@package/voting-crypto");
+			cryptoLatestVersion = await latestVersion("@protokol/voting-crypto");
 		} catch {
 			cryptoLatestVersion = "Not Published";
 		}
 
 		try {
-			transactionsLatestVersion = await latestVersion("@package/voting-transactions");
+			transactionsLatestVersion = await latestVersion("@protokol/voting-transactions");
 		} catch {
 			transactionsLatestVersion = "Not Published";
 		}
