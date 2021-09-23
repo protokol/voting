@@ -2681,7 +2681,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-simple-import-sort", "virtual:302fb8583091ec2a25ae3aa8d44208993a55a08d2d2c24a28fdde0476fe18cea7dca1bf5dd64e1150870e69db870330bfe7df528d83bc276acd69177a34fb425#npm:7.0.0"],
             ["jest", "virtual:fa2fe0813e9fb907f1101f6c09263b86766dc4f8f444a7e63777981cd7dacfb169f20295659fc41d6209beda0cc1330bf18b2d3cd56c925b6ec7dc6ef9abdf0e#npm:27.0.6"],
             ["jest-extended", "npm:0.11.5"],
-            ["joi", "npm:17.4.1"],
+            ["joi", "npm:17.4.2"],
             ["latest-version", "npm:5.1.0"],
             ["npm-check-updates", "npm:11.8.3"],
             ["prettier", "npm:2.3.2"],
@@ -10135,18 +10135,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["joi", [
-        ["npm:17.4.1", {
-          "packageLocation": "./.yarn/cache/joi-npm-17.4.1-d3383ad408-508f372f3d.zip/node_modules/joi/",
-          "packageDependencies": [
-            ["joi", "npm:17.4.1"],
-            ["@hapi/hoek", "npm:9.2.0"],
-            ["@hapi/topo", "npm:5.1.0"],
-            ["@sideway/address", "npm:4.1.2"],
-            ["@sideway/formula", "npm:3.0.0"],
-            ["@sideway/pinpoint", "npm:2.0.0"]
-          ],
-          "linkType": "HARD",
-        }],
         ["npm:17.4.2", {
           "packageLocation": "./.yarn/cache/joi-npm-17.4.2-93548ecd23-977ada1f9d.zip/node_modules/joi/",
           "packageDependencies": [
