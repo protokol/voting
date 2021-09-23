@@ -3,6 +3,9 @@ import { StateBuilder } from "@arkecosystem/core-state";
 import { Sandbox } from "@arkecosystem/core-test-framework";
 import { Managers } from "@arkecosystem/crypto";
 import delay from "delay";
+import { EventEmitter } from "events";
+
+EventEmitter.prototype.constructor = Object.prototype.constructor;
 
 jest.setTimeout(1200000);
 

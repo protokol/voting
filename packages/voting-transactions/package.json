@@ -35,19 +35,20 @@
 		"coverage:report": "codecov",
 		"test:unit": "jest __tests__/unit/** --forceExit",
 		"test:unit:coverage": "jest __tests__/unit --coverage",
-		"publish:beta": "yarn build && yarn npm publish --tag beta --access public --tolerate-republish"
+		"publish:beta": "yarn build && yarn npm publish --tag beta --access public --tolerate-republish",
+		"publish": "yarn build && yarn npm publish --access public --tolerate-republish"
 	},
 	"dependencies": {
-		"@arkecosystem/core-database": "^3.0.0-next",
-		"@arkecosystem/core-kernel": "^3.0.0-next",
-		"@arkecosystem/core-state": "^3.0.0-next",
-		"@arkecosystem/core-transactions": "^3.0.0-next",
-		"@arkecosystem/crypto": "^3.0.0-next",
+		"@arkecosystem/core-database": "^3.0.0",
+		"@arkecosystem/core-kernel": "^3.0.0",
+		"@arkecosystem/core-state": "^3.0.0",
+		"@arkecosystem/core-transactions": "^3.0.0",
+		"@arkecosystem/crypto": "^3.0.0",
 		"@protokol/voting-crypto": "workspace:packages/voting-crypto"
 	},
 	"devDependencies": {
-		"@arkecosystem/core-test-framework": "^3.0.0-next",
-		"@arkecosystem/core-transaction-pool": "^3.0.0-next",
+		"@arkecosystem/core-test-framework": "^3.0.0",
+		"@arkecosystem/core-transaction-pool": "^3.0.0",
 		"@sindresorhus/tsconfig": "^2.0.0",
 		"@types/bytebuffer": "^5.0.42",
 		"@types/eslint": "^7.2.10",
