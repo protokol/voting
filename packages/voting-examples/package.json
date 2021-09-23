@@ -30,8 +30,8 @@
 		"clean": "rimraf .coverage dist tmp"
 	},
 	"dependencies": {
-		"@arkecosystem/crypto": "^3.0.0-next",
-		"@protokol/client": "^1.0.0-beta.42",
+		"@arkecosystem/crypto": "^3.0.0",
+		"@protokol/client": "^1.0.0",
 		"@protokol/voting-crypto": "workspace:packages/voting-crypto"
 	},
 	"devDependencies": {

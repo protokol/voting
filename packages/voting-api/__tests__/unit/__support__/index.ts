@@ -1,7 +1,7 @@
 import { Application, Container, Contracts, Providers, Services } from "@arkecosystem/core-kernel";
 import { Wallets } from "@arkecosystem/core-state";
 import { Generators } from "@arkecosystem/core-test-framework";
-import { Handlers } from "@arkecosystem/core-transactions";
+import { Handlers, ServiceProvider } from "@arkecosystem/core-transactions";
 import { Identities, Managers, Utils } from "@arkecosystem/crypto";
 import { Handlers as VotingHandlers, Indexers } from "@protokol/voting-transactions";
 
@@ -89,6 +89,9 @@ export const initApp = (): Application => {
 		.to(Handlers.TransactionHandlerProvider)
 		.inSingletonScope();
 	app.bind(Container.Identifiers.TransactionHandlerRegistry).to(Handlers.Registry).inSingletonScope();
+	app.bind(Container.Identifiers.TransactionHandlerConstructors).toDynamicValue(
+		ServiceProvider.getTransactionHandlerConstructorsBinding(),
+	);
 
 	app.bind(Container.Identifiers.EventDispatcherService).to(Services.Events.NullEventDispatcher).inSingletonScope();
 
