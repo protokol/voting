@@ -1,5 +1,16 @@
 ### Changelog
 
+All notable changes to this project will be documented in this file. Dates are displayed in UTC.
+
+#### [1.0.0](https://github.com/protokol/voting/compare/1.0.0-beta.0...1.0.0)
+
+> 27 September 2021
+
+- chore: migrate dependencies to corev3 [`#35`](https://github.com/protokol/voting/pull/35)
+- chore(deps): update dependency jest to ~27.2.0 [`#33`](https://github.com/protokol/voting/pull/33)
+- chore: update changelog [`#34`](https://github.com/protokol/voting/pull/34)
+- release: 1.0.0 [`b3c878c`](https://github.com/protokol/voting/commit/b3c878cc79f18cc14f80ed62a36abaf191c9f776)
+
 #### 1.0.0-beta.0
 
 > 11 September 2021
