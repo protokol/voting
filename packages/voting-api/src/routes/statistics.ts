@@ -1,5 +1,6 @@
 import { Controller } from "@arkecosystem/core-api";
 import Hapi from "@hapi/hapi";
+import Joi from "joi";
 
 import { StatisticsController } from "../controllers";
 
@@ -12,6 +13,10 @@ export const register = (server: Hapi.Server, statisticsController: typeof Contr
 		method: "GET",
 		path: "/statistics/{id}",
 		handler: (request: Hapi.Request) => controller.statistics(request),
-		options: {},
+		options: {
+			params: Joi.object({
+				id: Joi.string().hex().length(64),
+			}),
+		},
 	});
 };
