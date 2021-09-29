@@ -1,12 +1,12 @@
 import { Controller } from "@arkecosystem/core-api";
 import { Container, Contracts } from "@arkecosystem/core-kernel";
-import { Utils } from "@arkecosystem/crypto";
 import Hapi from "@hapi/hapi";
 import { Indexers } from "@protokol/voting-transactions";
 import { getRepository } from "typeorm";
 
 import { BlockBalance } from "../entities";
 import { VotingStatusEnum } from "../enums";
+import { ApiErrors } from "../errors";
 import { WalletBalance } from "../interfaces";
 import { StatisticsResource } from "../resources/statistics";
 
@@ -21,7 +21,13 @@ export class StatisticsController extends Controller {
 
 	public async statistics(request: Hapi.Request): Promise<any> {
 		const { id } = request.params;
-		const proposedWallet = this.walletRepository.findByIndex(Indexers.createProposalVotingWalletIndex, id);
+		let proposedWallet: Contracts.State.Wallet | undefined;
+
+		try {
+			proposedWallet = this.walletRepository.findByIndex(Indexers.createProposalVotingWalletIndex, id);
+		} catch {
+			return ApiErrors.ProposalDoesntExists;
+		}
 
 		const proposedWalletData = proposedWallet.getAttribute("voting.proposal");
 		const proposedData = proposedWalletData[id];

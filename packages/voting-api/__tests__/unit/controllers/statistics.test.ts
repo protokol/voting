@@ -5,6 +5,7 @@ import Hapi from "@hapi/hapi";
 import { Indexers } from "@protokol/voting-transactions";
 
 import { StatisticsController } from "../../../src/controllers";
+import { ApiErrors } from "../../../src/errors";
 import { buildWallet } from "../__support__";
 import { initApp, ItemResponse } from "../__support__";
 
@@ -52,6 +53,17 @@ describe("Statistics Controller", () => {
 
 			expect(response).toBeObject();
 			expect(response).not.toBeEmpty();
+		});
+
+		it("should return 404 response", async () => {
+			const request: Hapi.Request = {
+				params: {
+					id: "falseID",
+				},
+			};
+			const response = await configurationsController.statistics(request);
+
+			expect(response).toBe(ApiErrors.ProposalDoesntExists);
 		});
 	});
 });
