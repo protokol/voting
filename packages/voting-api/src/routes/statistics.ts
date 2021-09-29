@@ -14,9 +14,11 @@ export const register = (server: Hapi.Server, statisticsController: typeof Contr
 		path: "/statistics/{id}",
 		handler: (request: Hapi.Request) => controller.statistics(request),
 		options: {
-			params: Joi.object({
-				id: Joi.string().hex().length(64),
-			}),
+			validate: {
+				params: Joi.object({
+					id: Joi.string().hex().length(64),
+				}),
+			},
 		},
 	});
 };
