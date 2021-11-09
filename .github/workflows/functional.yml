@@ -25,7 +25,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [ 12.x, 14.x ]
+        node-version: [ 16.x ]
     env:
       CORE_DB_DATABASE: ark_unitnet
       CORE_DB_USERNAME: ark
@@ -62,7 +62,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [ 12.x, 14.x ]
+        node-version: [ 16.x ]
     env:
       CORE_DB_DATABASE: ark_unitnet
       CORE_DB_USERNAME: ark
@@ -99,7 +99,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [ 12.x, 14.x ]
+        node-version: [ 16.x ]
     env:
       CORE_DB_DATABASE: ark_unitnet
       CORE_DB_USERNAME: ark
@@ -136,7 +136,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [ 12.x, 14.x ]
+        node-version: [ 16.x ]
     env:
       CORE_DB_DATABASE: ark_unitnet
       CORE_DB_USERNAME: ark
@@ -173,7 +173,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [ 12.x, 14.x ]
+        node-version: [ 16.x ]
     env:
       CORE_DB_DATABASE: ark_unitnet
       CORE_DB_USERNAME: ark
@@ -210,7 +210,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [ 12.x, 14.x ]
+        node-version: [ 16.x ]
     env:
       CORE_DB_DATABASE: ark_unitnet
       CORE_DB_USERNAME: ark
@@ -247,7 +247,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [ 12.x, 14.x ]
+        node-version: [ 16.x ]
     env:
       CORE_DB_DATABASE: ark_unitnet
       CORE_DB_USERNAME: ark
@@ -284,7 +284,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [ 12.x, 14.x ]
+        node-version: [ 16.x ]
     env:
       CORE_DB_DATABASE: ark_unitnet
       CORE_DB_USERNAME: ark
