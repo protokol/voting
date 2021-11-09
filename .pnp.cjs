@@ -2710,7 +2710,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["bytebuffer", "npm:5.0.1"],
             ["cross-env", "npm:7.0.3"],
             ["jest", "virtual:62d24a1fe733c2d4a00aa66f5c4160609229d7e71a93945c7bd9bb03eb76d17099ccb883a262c1216a2e4f30952a389418a39cde0bb34b256981bc8d47b46d34#npm:27.3.1"],
-            ["jest-extended", "npm:1.0.0"],
+            ["jest-extended", "npm:1.1.0"],
             ["rimraf", "npm:3.0.2"],
             ["ts-jest", "virtual:62d24a1fe733c2d4a00aa66f5c4160609229d7e71a93945c7bd9bb03eb76d17099ccb883a262c1216a2e4f30952a389418a39cde0bb34b256981bc8d47b46d34#npm:27.0.4"],
             ["typescript", "patch:typescript@npm%3A4.4.2#~builtin<compat/typescript>::version=4.4.2&hash=ddd1e8"]
@@ -9695,6 +9695,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["jest-extended", "npm:1.0.0"],
             ["expect", "npm:26.6.2"],
+            ["jest-get-type", "npm:27.0.6"],
+            ["jest-matcher-utils", "npm:27.2.5"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:1.1.0", {
+          "packageLocation": "./.yarn/cache/jest-extended-npm-1.1.0-e1e518fd29-2cc9d85b9f.zip/node_modules/jest-extended/",
+          "packageDependencies": [
+            ["jest-extended", "npm:1.1.0"],
+            ["expect", "npm:26.6.2"],
+            ["jest-diff", "npm:27.2.5"],
             ["jest-get-type", "npm:27.0.6"],
             ["jest-matcher-utils", "npm:27.2.5"]
           ],
