@@ -4,7 +4,7 @@
 	"description": "Voting Transactions for Protokol Ecosystem",
 	"engineStrict": true,
 	"engines": {
-		"node": "^12 || ^14",
+		"node": "^16.0.0",
 		"yarn": "^3.0.0"
 	},
 	"scripts": {
@@ -46,7 +46,7 @@
 		"@types/eslint": "^7.2.13",
 		"@types/eslint-plugin-prettier": "^3.1.0",
 		"@types/jest": "^27.0.0",
-		"@types/node": "^14.17.2",
+		"@types/node": "^16.0.0",
 		"@types/prettier": "^2.2.3",
 		"@types/rimraf": "^3.0.0",
 		"@typescript-eslint/eslint-plugin": "^5.0.0",
