@@ -2073,7 +2073,7 @@ __metadata:
     bytebuffer: ^5.0.1
     cross-env: ^7.0.3
     jest: ~27.3.0
-    jest-extended: 1.1.0
+    jest-extended: 1.2.1
     rimraf: ^3.0.2
     ts-jest: ~27.0.4
     typescript: ~4.4.2
@@ -8126,15 +8126,15 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"jest-extended@npm:1.1.0":
-  version: 1.1.0
-  resolution: "jest-extended@npm:1.1.0"
+"jest-extended@npm:1.2.1":
+  version: 1.2.1
+  resolution: "jest-extended@npm:1.2.1"
   dependencies:
     expect: ^26.6.2
     jest-diff: ^27.2.5
     jest-get-type: ^27.0.6
     jest-matcher-utils: ^27.2.4
-  checksum: 2cc9d85b9fba1b23857624e2a58658416fced37650d145e98447c2863a3c27d381aa49eea99bebfcbac52d52416b063771f30e9caf41efb0fed8562c915d0a32
+  checksum: e7ce0b66786e84600c6c442ad9632ab402eb07ba60125e7a3a71c828553971fd5ba2b69e5ded300252416c5941a3ad1470170284d62fa64e66a373ea71b179c5
   languageName: node
   linkType: hard
 
