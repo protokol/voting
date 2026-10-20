@@ -2668,7 +2668,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.7"],
             ["@types/prettier", "npm:2.3.2"],
             ["@types/rimraf", "npm:3.0.1"],
-            ["@types/semver", "npm:7.3.9"],
+            ["@types/semver", "npm:7.8.0"],
             ["@typescript-eslint/eslint-plugin", "virtual:302fb8583091ec2a25ae3aa8d44208993a55a08d2d2c24a28fdde0476fe18cea7dca1bf5dd64e1150870e69db870330bfe7df528d83bc276acd69177a34fb425#npm:5.0.0"],
             ["@typescript-eslint/parser", "virtual:302fb8583091ec2a25ae3aa8d44208993a55a08d2d2c24a28fdde0476fe18cea7dca1bf5dd64e1150870e69db870330bfe7df528d83bc276acd69177a34fb425#npm:5.0.0"],
             ["better-sqlite3", "npm:7.4.3"],
@@ -3280,10 +3280,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],
           "linkType": "HARD",
         }],
-        ["npm:7.3.9", {
-          "packageLocation": "./.yarn/cache/@types-semver-npm-7.3.9-eb0d8b7243-60bfcfdfa7.zip/node_modules/@types/semver/",
+        ["npm:7.8.0", {
+          "packageLocation": "./.yarn/cache/@types-semver-npm-7.8.0-9c468999fb-30e178f8d9.zip/node_modules/@types/semver/",
           "packageDependencies": [
-            ["@types/semver", "npm:7.3.9"]
+            ["@types/semver", "npm:7.8.0"]
           ],
           "linkType": "HARD",
         }]
