@@ -2033,7 +2033,7 @@ __metadata:
     "@types/node": ^16.0.0
     "@types/prettier": ^2.1.5
     "@types/rimraf": ^3.0.0
-    "@types/semver": 7.3.9
+    "@types/semver": 7.8.0
     "@typescript-eslint/eslint-plugin": ^5.0.0
     "@typescript-eslint/parser": ^5.0.0
     better-sqlite3: ^7.4.3
@@ -2616,10 +2616,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/semver@npm:7.3.9":
-  version: 7.3.9
-  resolution: "@types/semver@npm:7.3.9"
-  checksum: 60bfcfdfa7f937be2c6f4b37ddb6714fb0f27b05fe4cbdfdd596a97d35ed95d13ee410efdd88e72a66449d0384220bf20055ab7d6b5df10de4990fbd20e5cbe0
+"@types/semver@npm:7.8.0":
+  version: 7.8.0
+  resolution: "@types/semver@npm:7.8.0"
+  checksum: 30e178f8d9af07e86f589219acf4fe8dff3fe763995a69b6501983dc06bcacf40373767125a6a8437b2fd77b4660f298f9ea0afc21ce09739e0d0c6dd36e32b6
   languageName: node
   linkType: hard
 
